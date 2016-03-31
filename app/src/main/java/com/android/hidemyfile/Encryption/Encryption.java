@@ -1,4 +1,4 @@
-package com.android.hidemyfile;
+package com.android.hidemyfile.Encryption;
 
 import android.util.Log;
 
@@ -18,7 +18,7 @@ import javax.crypto.spec.SecretKeySpec;
 public class Encryption {
 
     private static final String TAG = "Encryption";
-    private static final String FILE_PREFIX = ".encrypted";
+    public static final String FILE_PREFIX = ".encrypted";
 
     public static String encrypt(String secretKey, File file) throws IOException, NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException {
         String filePath = file.getPath() + FILE_PREFIX;

@@ -1,4 +1,4 @@
-package com.android.hidemyfile;
+package com.android.hidemyfile.Dialog;
 
 import android.app.Dialog;
 import android.content.DialogInterface;
@@ -7,19 +7,16 @@ import android.support.v4.app.DialogFragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.view.View;
-import android.widget.TextView;
 
-public class DialogFile extends DialogFragment {
+import com.android.hidemyfile.R;
+
+public class DialogFileEncrypt extends DialogFragment {
 
     private static final String TAG = "DialogFile";
-
-    private static final String PATTERN_JPG = ".jpg";
 
     private AlertDialog alertDialog;
     private AlertDialog.Builder alertDialogBuilder;
     private DialogCallbacks dialogCallbacks;
-
-    private TextView TVFileType;
 
     private String filePath;
 
@@ -33,25 +30,19 @@ public class DialogFile extends DialogFragment {
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        View rootView = getActivity().getLayoutInflater().inflate(R.layout.dialog_file, null);
-
-        TVFileType = (TextView) rootView.findViewById(R.id.text_type);
-
-        if (filePath.endsWith(PATTERN_JPG)) {
-            TVFileType.setText("Music File");
-        }
+        View rootView = getActivity().getLayoutInflater().inflate(R.layout.dialog_encryption, null);
 
         alertDialogBuilder = new AlertDialog.Builder(getActivity())
-                .setTitle("File options")
+                .setTitle("Warning!")
                 .setCancelable(false)
                 .setView(rootView)
-                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dismiss();
                     }
                 })
-                .setPositiveButton("Encrypt", new DialogInterface.OnClickListener() {
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         if (dialogCallbacks != null) {

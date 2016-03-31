@@ -6,7 +6,7 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/text_type"
+        android:id="@+id/text_warning"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingBottom="16dp"
@@ -15,8 +15,8 @@
         android:paddingRight="16dp"
         android:paddingStart="24dp"
         android:paddingTop="16dp"
-        android:text="File path:"
-        android:textColor="@color/textPrimary"
+        android:text="Do you want to encrypt this file?"
+        android:textColor="@color/colorTextPrimary"
         android:textSize="18sp" />
 
 </LinearLayout>
