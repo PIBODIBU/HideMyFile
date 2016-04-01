@@ -44,4 +44,36 @@
         <item name="android:paddingLeft">0dp</item>
         <item name="android:paddingRight">0dp</item>
     </style>
+
+    <style name="AppTheme.TextInputLayout" parent="TextAppearance.AppCompat">
+        <item name="colorAccent">@color/colorPrimary</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+
+        <item name="colorControlNormal">@color/colorPrimary</item>
+        <item name="colorControlActivated">@color/colorPrimary</item>
+        <item name="colorControlHighlight">@color/colorPrimary</item>
+
+        <item name="android:textColorHint">@color/colorTextSecondary</item>
+        <item name="android:textColorHighlight">@color/colorPrimary</item>
+        <item name="android:textColorLink">@color/colorPrimary</item>
+    </style>
+
+    <style name="AppTheme.TextInputLayout.EditText">
+        <item name="android:textSize">15sp</item>
+
+        <item name="colorAccent">@color/colorPrimary</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+
+        <item name="colorControlNormal">@color/colorTextSecondary</item>
+        <item name="colorControlActivated">@color/colorPrimary</item>
+        <item name="colorControlHighlight">@color/colorPrimary</item>
+
+        <item name="android:textColorLink">@color/colorPrimary</item>
+    </style>
+
+    <style name="AppTheme.TextInputLayout.ErrorAppearance" parent="@android:style/TextAppearance">
+        <item name="android:textColor">@color/md_red_500</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
 </resources>

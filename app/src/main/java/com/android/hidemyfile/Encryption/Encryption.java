@@ -30,8 +30,6 @@ public class Encryption {
         FileInputStream fileInputStream = new FileInputStream(file);
         FileOutputStream fileOutputStream = new FileOutputStream(newFile);
 
-        // Length is 16 byte
-        // Careful when taking user input!!! http://stackoverflow.com/a/3452620/1188357
         SecretKeySpec secretKeySpec = new SecretKeySpec(getKeyFromString(secretKey), "AES");
 
         // Create cipher
@@ -53,7 +51,11 @@ public class Encryption {
         cipherOutputStream.close();
         fileInputStream.close();
 
-        file.delete();
+        if (file.delete()) {
+            Log.d(TAG, "encrypt() -> Original file deleted");
+        } else {
+            Log.e(TAG, "encrypt() -> Error while deleting original file");
+        }
 
         return filePath;
     }
@@ -76,11 +78,15 @@ public class Encryption {
             fileOutputStream.write(d, 0, b);
         }
 
-        file.delete();
-
         fileOutputStream.flush();
         fileOutputStream.close();
         cipherInputStream.close();
+
+        if (file.delete()) {
+            Log.d(TAG, "decrypt() -> Original file deleted");
+        } else {
+            Log.e(TAG, "decrypt() -> Error while deleting original file");
+        }
     }
 
     private static String getSalt() {

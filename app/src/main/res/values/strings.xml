@@ -1,3 +1,21 @@
 <resources>
     <string name="app_name">Hide My File</string>
+
+
+    <string name="dialog_encryption_hint">Password</string>
+    <string name="dialog_encryption_title">Encryption warning!</string>
+    <string name="dialog_encryption_positive">Encrypt</string>
+    <string name="dialog_encryption_negative">Cancel</string>
+    <string name="dialog_encryption_error_empty">Type password</string>
+    <string name="dialog_encryption_error_short">Too short password</string>
+    <string name="dialog_encryption_error_long">Too long password</string>
+
+
+    <string name="dialog_decryption_hint">Password</string>
+    <string name="dialog_decryption_title">Decryption warning!</string>
+    <string name="dialog_decryption_positive">Decrypt</string>
+    <string name="dialog_decryption_negative">Cancel</string>
+    <string name="dialog_decryption_error_empty">Type password</string>
+    <string name="dialog_decryption_error_short">Too short password</string>
+    <string name="dialog_decryption_error_long">Too long password</string>
 </resources>

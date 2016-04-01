@@ -176,8 +176,8 @@ public class MainActivity extends AppCompatActivity {
         dialogFileEncrypt.init(filePath);
         dialogFileEncrypt.setDialogCallbacks(new DialogFileEncrypt.DialogCallbacks() {
             @Override
-            public void onPositive() {
-                performEncryption(filePath);
+            public void onPositive(String password) {
+                performEncryption(password, filePath);
             }
         });
         dialogFileEncrypt.show(getSupportFragmentManager(), "DialogFileEncrypt");
@@ -188,56 +188,69 @@ public class MainActivity extends AppCompatActivity {
         dialogFileDecrypt.init(filePath);
         dialogFileDecrypt.setDialogCallbacks(new DialogFileDecrypt.DialogCallbacks() {
             @Override
-            public void onPositive() {
-                performDecryption(filePath);
+            public void onPositive(String password) {
+                performDecryption(password, filePath);
+
             }
         });
         dialogFileDecrypt.show(getSupportFragmentManager(), "DialogFileDecrypt");
     }
 
-    private void performEncryption(String filePath) {
+    private void performEncryption(String secretKey, String filePath) {
         try {
-            Encryption.encrypt("MyDifficultPassw", new File(filePath));
+            Encryption.encrypt(secretKey, new File(filePath));
             showInfo("File encrypted");
+
         } catch (NoSuchAlgorithmException ex) {
             Log.e(TAG, "onClick() -> ", ex);
             showInfo("Error while encrypting file");
+
         } catch (NoSuchPaddingException ex) {
             Log.e(TAG, "onClick() -> ", ex);
-            showInfo("Error while encrypting file");
+            showInfo("NoSuchPaddingException");
+
         } catch (InvalidKeyException ex) {
             Log.e(TAG, "onClick() -> ", ex);
-            showInfo("Error while encrypting file");
+            showInfo("Invalid password");
+
         } catch (UnsupportedEncodingException ex) {
             Log.e(TAG, "onClick() -> ", ex);
-            showInfo("Error while encrypting file");
+            showInfo("UnsupportedEncodingException");
+
         } catch (IOException ex) {
             Log.e(TAG, "onClick() -> ", ex);
-            showInfo("Error while encrypting file");
+            showInfo("IOException");
+
         } finally {
             refreshAdapterItems();
         }
     }
 
-    private void performDecryption(String filePath) {
+    private void performDecryption(String secretKey, String filePath) {
         try {
-            Encryption.decrypt("MyDifficultPassw", new File(filePath));
+            Encryption.decrypt(secretKey, new File(filePath));
             showInfo("File decrypted");
+
         } catch (NoSuchAlgorithmException ex) {
             Log.e(TAG, "onClick() -> ", ex);
             showInfo("Error while decrypting file");
+
         } catch (NoSuchPaddingException ex) {
             Log.e(TAG, "onClick() -> ", ex);
-            showInfo("Error while decrypting file");
+            showInfo("NoSuchPaddingException");
+
         } catch (InvalidKeyException ex) {
             Log.e(TAG, "onClick() -> ", ex);
-            showInfo("Error while decrypting file");
+            showInfo("Invalid password");
+
         } catch (UnsupportedEncodingException ex) {
             Log.e(TAG, "onClick() -> ", ex);
-            showInfo("Error while decrypting file");
+            showInfo("UnsupportedEncodingException");
+
         } catch (IOException ex) {
             Log.e(TAG, "onClick() -> ", ex);
-            showInfo("Error while decrypting file");
+            showInfo("IOException");
+
         } finally {
             refreshAdapterItems();
         }
