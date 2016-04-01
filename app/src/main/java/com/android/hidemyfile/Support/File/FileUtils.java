@@ -184,7 +184,7 @@ public class FileUtils {
                 return R.drawable.ic_ondemand_video_white_24dp;
             }
             case TYPE_APK: {
-                return R.drawable.ic_android_grey_24dp;
+                return R.drawable.ic_android_white_24dp;
             }
             case TYPE_TEXT: {
                 return R.drawable.ic_receipt_white_24dp;

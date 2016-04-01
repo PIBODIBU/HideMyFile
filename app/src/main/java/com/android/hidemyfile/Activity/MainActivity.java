@@ -1,5 +1,7 @@
 package com.android.hidemyfile.Activity;
 
+import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Environment;
@@ -12,12 +14,15 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.android.hidemyfile.AsyncTask.DecryptionTask;
+import com.android.hidemyfile.AsyncTask.EncryptionTask;
 import com.android.hidemyfile.Dialog.DialogFileDecrypt;
 import com.android.hidemyfile.Dialog.DialogFileEncrypt;
 import com.android.hidemyfile.Encryption.Encryption;
@@ -197,63 +202,105 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void performEncryption(String secretKey, String filePath) {
-        try {
-            Encryption.encrypt(secretKey, new File(filePath));
-            showInfo("File encrypted");
+        EncryptionTask encryptionTask = new EncryptionTask(secretKey, filePath);
+        encryptionTask.setEncryptionCallbacks(new EncryptionTask.EncryptionCallbacks() {
+            private ProgressDialog loadingDialog;
 
-        } catch (NoSuchAlgorithmException ex) {
-            Log.e(TAG, "onClick() -> ", ex);
-            showInfo("Error while encrypting file");
+            @Override
+            public void onPrepare() {
+                loadingDialog = new ProgressDialog(MainActivity.this);
+                loadingDialog.setMessage(getString(R.string.dialog_loading_encryption));
+                loadingDialog.setCancelable(false);
+                loadingDialog.setCanceledOnTouchOutside(false);
+                loadingDialog.setOnKeyListener(new DialogInterface.OnKeyListener() {
+                    @Override
+                    public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
+                        if (keyCode == KeyEvent.KEYCODE_BACK && !event.isCanceled()) {
+                            return false;
+                        }
+                        return false;
+                    }
+                });
+                loadingDialog.show();
+            }
 
-        } catch (NoSuchPaddingException ex) {
-            Log.e(TAG, "onClick() -> ", ex);
-            showInfo("NoSuchPaddingException");
+            @Override
+            public void onComplete() {
+                loadingDialog.dismiss();
+                refreshAdapterItems();
+            }
 
-        } catch (InvalidKeyException ex) {
-            Log.e(TAG, "onClick() -> ", ex);
-            showInfo("Invalid password");
+            @Override
+            public void onSuccess() {
+                showInfo("File encrypted");
+            }
 
-        } catch (UnsupportedEncodingException ex) {
-            Log.e(TAG, "onClick() -> ", ex);
-            showInfo("UnsupportedEncodingException");
-
-        } catch (IOException ex) {
-            Log.e(TAG, "onClick() -> ", ex);
-            showInfo("IOException");
-
-        } finally {
-            refreshAdapterItems();
-        }
+            @Override
+            public void onException(int exceptionCode) {
+                if (exceptionCode == EncryptionTask.NO_SUCH_ALGORITHM_EXCEPTION)
+                    showInfo("NO_SUCH_ALGORITHM_EXCEPTION");
+                else if (exceptionCode == EncryptionTask.NO_SUCH_PADDING_EXCEPTION)
+                    showInfo("NO_SUCH_PADDING_EXCEPTION");
+                else if (exceptionCode == EncryptionTask.INVALID_KEY_EXCEPTION)
+                    showInfo("INVALID_KEY_EXCEPTION");
+                else if (exceptionCode == EncryptionTask.UNSUPPORTED_ENCODING_EXCEPTION)
+                    showInfo("UNSUPPORTED_ENCODING_EXCEPTION");
+                else if (exceptionCode == EncryptionTask.IO_EXCEPTION)
+                    showInfo("IO_EXCEPTION");
+            }
+        });
+        encryptionTask.execute();
     }
 
     private void performDecryption(String secretKey, String filePath) {
-        try {
-            Encryption.decrypt(secretKey, new File(filePath));
-            showInfo("File decrypted");
+        DecryptionTask decryptionTask = new DecryptionTask(secretKey, filePath);
+        decryptionTask.setDecryptionCallbacks(new DecryptionTask.DecryptionCallbacks() {
+            private ProgressDialog loadingDialog;
 
-        } catch (NoSuchAlgorithmException ex) {
-            Log.e(TAG, "onClick() -> ", ex);
-            showInfo("Error while decrypting file");
+            @Override
+            public void onPrepare() {
+                loadingDialog = new ProgressDialog(MainActivity.this);
+                loadingDialog.setMessage(getString(R.string.dialog_loading_decryption));
+                loadingDialog.setCancelable(false);
+                loadingDialog.setCanceledOnTouchOutside(false);
+                loadingDialog.setOnKeyListener(new DialogInterface.OnKeyListener() {
+                    @Override
+                    public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
+                        if (keyCode == KeyEvent.KEYCODE_BACK && !event.isCanceled()) {
+                            return false;
+                        }
+                        return false;
+                    }
+                });
+                loadingDialog.show();
+            }
 
-        } catch (NoSuchPaddingException ex) {
-            Log.e(TAG, "onClick() -> ", ex);
-            showInfo("NoSuchPaddingException");
+            @Override
+            public void onComplete() {
+                loadingDialog.dismiss();
+                refreshAdapterItems();
+            }
 
-        } catch (InvalidKeyException ex) {
-            Log.e(TAG, "onClick() -> ", ex);
-            showInfo("Invalid password");
+            @Override
+            public void onSuccess() {
+                showInfo("File decrypted");
+            }
 
-        } catch (UnsupportedEncodingException ex) {
-            Log.e(TAG, "onClick() -> ", ex);
-            showInfo("UnsupportedEncodingException");
-
-        } catch (IOException ex) {
-            Log.e(TAG, "onClick() -> ", ex);
-            showInfo("IOException");
-
-        } finally {
-            refreshAdapterItems();
-        }
+            @Override
+            public void onException(int exceptionCode) {
+                if (exceptionCode == EncryptionTask.NO_SUCH_ALGORITHM_EXCEPTION)
+                    showInfo("NO_SUCH_ALGORITHM_EXCEPTION");
+                else if (exceptionCode == EncryptionTask.NO_SUCH_PADDING_EXCEPTION)
+                    showInfo("NO_SUCH_PADDING_EXCEPTION");
+                else if (exceptionCode == EncryptionTask.INVALID_KEY_EXCEPTION)
+                    showInfo("INVALID_KEY_EXCEPTION");
+                else if (exceptionCode == EncryptionTask.UNSUPPORTED_ENCODING_EXCEPTION)
+                    showInfo("UNSUPPORTED_ENCODING_EXCEPTION");
+                else if (exceptionCode == EncryptionTask.IO_EXCEPTION)
+                    showInfo("IO_EXCEPTION");
+            }
+        });
+        decryptionTask.execute();
     }
 
     @Override

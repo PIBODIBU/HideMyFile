@@ -18,4 +18,8 @@
     <string name="dialog_decryption_error_empty">Type password</string>
     <string name="dialog_decryption_error_short">Too short password</string>
     <string name="dialog_decryption_error_long">Too long password</string>
+
+
+    <string name="dialog_loading_encryption">Encryption in progress…</string>
+    <string name="dialog_loading_decryption">Decryption in progress…</string>
 </resources>
