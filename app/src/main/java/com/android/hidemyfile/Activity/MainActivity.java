@@ -14,6 +14,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -29,6 +30,8 @@ import com.android.hidemyfile.Support.File.FileUtils;
 import java.io.File;
 import java.util.ArrayList;
 
+import me.zhanghai.android.materialprogressbar.MaterialProgressBar;
+
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainAcivity";
@@ -41,6 +44,8 @@ public class MainActivity extends AppCompatActivity {
     private CoordinatorLayout rootView;
 
     private Button FABFileChoose;
+    private ImageButton toolbarActionRefresh;
+    private MaterialProgressBar toolbarActionRefreshPB;
     /*****/
 
     /**
@@ -76,6 +81,9 @@ public class MainActivity extends AppCompatActivity {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         rootView = (CoordinatorLayout) findViewById(R.id.root_view);
 
+        toolbarActionRefresh = (ImageButton) findViewById(R.id.toolbar_action_refresh);
+        toolbarActionRefreshPB = (MaterialProgressBar) findViewById(R.id.toolbar_action_refresh_bar);
+
         /** Warning message "No encrypted files" Views **/
         messageRootView = findViewById(R.id.container_message_empty);
     }
@@ -105,17 +113,27 @@ public class MainActivity extends AppCompatActivity {
 
         Log.d(TAG, "refreshAdapterItems() -> Directory: " + rootPath);
 
+        fileScanner.setOnScanPrepareListener(new FileScanner.OnScanPrepareListener() {
+            @Override
+            public void onScanPrepare() {
+                toolbarActionRefresh.setVisibility(View.GONE);
+                toolbarActionRefreshPB.setVisibility(View.VISIBLE);
+            }
+        });
+
         fileScanner.setOnScanCompleteListener(new FileScanner.OnScanCompleteListener() {
             @Override
             public void onScanComplete() {
                 fileAdapter.notifyDataSetChanged();
-
                 refreshLayout();
+
+                toolbarActionRefresh.setVisibility(View.VISIBLE);
+                toolbarActionRefreshPB.setVisibility(View.GONE);
             }
         });
 
         dataSet.clear();
-        fileScanner.scan(new File(rootPath + "/"), dataSet); // TODO remove "/"
+        fileScanner.scan(new File(rootPath), dataSet); // TODO remove "/"
     }
 
     private void refreshLayout() {
@@ -130,6 +148,9 @@ public class MainActivity extends AppCompatActivity {
         switch (view.getId()) {
             case R.id.button_choose:
                 showFileChooser();
+                break;
+            case R.id.toolbar_action_refresh:
+                refreshAdapterItems();
                 break;
             default:
                 break;

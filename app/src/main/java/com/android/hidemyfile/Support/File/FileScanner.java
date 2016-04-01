@@ -1,5 +1,8 @@
 package com.android.hidemyfile.Support.File;
 
+import android.content.Context;
+import android.media.MediaScannerConnection;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.util.Log;
 
@@ -12,10 +15,18 @@ public class FileScanner {
 
     private static final String TAG = "FileScanner";
 
+    private OnScanPrepareListener onScanPrepareListener;
     private OnScanCompleteListener onScanCompleteListener;
 
     public void scan(final File root, final ArrayList<FileModel> fileModels) {
         new AsyncTask<Void, Void, Void>() {
+            @Override
+            protected void onPreExecute() {
+                if (onScanPrepareListener != null) {
+                    onScanPrepareListener.onScanPrepare();
+                }
+            }
+
             @Override
             protected Void doInBackground(Void... params) {
                 Log.d(TAG, "scan() -> doInBackground()");
@@ -50,8 +61,9 @@ public class FileScanner {
                     } else {
                         Log.d(TAG, "scanRecursively() -> File: " + f.getAbsoluteFile());
 
-                        if (f.getName().endsWith(Encryption.FILE_PREFIX))
-                            fileModels.add(new FileModel(f.getName(), f.getAbsolutePath()));
+                        if (f.getName().endsWith(Encryption.FILE_PREFIX)) {
+                            fileModels.add(new FileModel(FileUtils.removeEncryptPreffix(f.getName()), f.getAbsolutePath()));
+                        }
                     }
                 }
             }
@@ -68,5 +80,13 @@ public class FileScanner {
 
     public interface OnScanCompleteListener {
         void onScanComplete();
+    }
+
+    public void setOnScanPrepareListener(OnScanPrepareListener onScanPrepareListener) {
+        this.onScanPrepareListener = onScanPrepareListener;
+    }
+
+    public interface OnScanPrepareListener {
+        void onScanPrepare();
     }
 }

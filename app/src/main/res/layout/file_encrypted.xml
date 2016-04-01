@@ -12,8 +12,9 @@
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_margin="16dp"
+        android:background="@drawable/circle_primary"
         android:padding="16dp"
-        android:src="@drawable/ic_camera_alt_grey_24dp" />
+        android:src="@drawable/ic_camera_alt_white_24dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -30,11 +31,7 @@
             android:id="@+id/text_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:ellipsize="marquee"
-            android:focusable="true"
-            android:marqueeRepeatLimit="marquee_forever"
             android:maxLines="1"
-            android:scrollHorizontally="true"
             android:text="This is File name"
             android:textColor="@color/colorTextPrimary"
             android:textSize="18sp" />
@@ -43,11 +40,7 @@
             android:id="@+id/text_path"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:ellipsize="marquee"
-            android:focusable="true"
-            android:marqueeRepeatLimit="marquee_forever"
             android:maxLines="1"
-            android:scrollHorizontally="true"
             android:text="This is File path"
             android:textColor="@color/colorTextSecondary"
             android:textSize="14sp" />

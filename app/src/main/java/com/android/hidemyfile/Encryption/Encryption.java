@@ -37,18 +37,18 @@ public class Encryption {
         cipher.init(Cipher.ENCRYPT_MODE, secretKeySpec);
 
         // Wrap the output stream
-        CipherOutputStream cos = new CipherOutputStream(fileOutputStream, cipher);
+        CipherOutputStream cipherOutputStream = new CipherOutputStream(fileOutputStream, cipher);
 
         // Write bytes
-        int b;
-        byte[] d = new byte[8];
-        while ((b = fileInputStream.read(d)) != -1) {
-            cos.write(d, 0, b);
+        int length;
+        byte[] buffer = new byte[8];
+        while ((length = fileInputStream.read(buffer)) != -1) {
+            cipherOutputStream.write(buffer, 0, length);
         }
 
         // Flush and close streams.
-        cos.flush();
-        cos.close();
+        cipherOutputStream.flush();
+        cipherOutputStream.close();
         fileInputStream.close();
 
         file.delete();

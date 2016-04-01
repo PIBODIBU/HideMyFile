@@ -45,6 +45,10 @@ public class FileUtils {
         return null;
     }
 
+    public static String removeEncryptPreffix(String path) {
+        return path.replace(Encryption.FILE_PREFIX, "");
+    }
+
     public static int getFileType(String pathToFile) {
         if (pathToFile.endsWith(".jpg")) return TYPE_IMAGE;
         else if (pathToFile.endsWith(".jpeg")) return TYPE_IMAGE;
@@ -63,7 +67,7 @@ public class FileUtils {
     }
 
     public static int getEncryptedFileType(String pathToFile) {
-        pathToFile = pathToFile.replace(Encryption.FILE_PREFIX, "");
+        pathToFile = removeEncryptPreffix(pathToFile);
         Log.d(TAG, "getEncryptedFileType() -> Path to File: " + pathToFile);
 
         if (pathToFile.endsWith(".jpg")) return TYPE_IMAGE;
@@ -85,7 +89,7 @@ public class FileUtils {
     public static int getIconFromType(int fileType) {
         switch (fileType) {
             case TYPE_IMAGE: {
-                return R.drawable.ic_camera_alt_grey_24dp;
+                return R.drawable.ic_camera_alt_white_24dp;
             }
             case TYPE_GIF: {
                 return R.drawable.ic_gif_grey_24dp;
@@ -97,10 +101,10 @@ public class FileUtils {
                 return R.drawable.ic_android_grey_24dp;
             }
             case TYPE_TEXT: {
-                return R.drawable.ic_receipt_grey_24dp;
+                return R.drawable.ic_receipt_white_24dp;
             }
             case TYPE_DOC: {
-                return R.drawable.ic_receipt_grey_24dp;
+                return R.drawable.ic_receipt_white_24dp;
             }
             case TYPE_PDF: {
                 return R.drawable.ic_picture_as_pdf_grey_24dp;
