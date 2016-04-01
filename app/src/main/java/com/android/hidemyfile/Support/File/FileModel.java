@@ -8,7 +8,7 @@ public class FileModel {
     public FileModel(
             String fileName,
             String filePath
-    ) {
+            ) {
         this.fileName = fileName;
         this.filePath = filePath;
     }
@@ -28,4 +28,5 @@ public class FileModel {
     public void setFilePath(String filePath) {
         this.filePath = filePath;
     }
+
 }

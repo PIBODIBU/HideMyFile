@@ -28,7 +28,13 @@ import com.android.hidemyfile.Support.File.FileScanner;
 import com.android.hidemyfile.Support.File.FileUtils;
 
 import java.io.File;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
+
+import javax.crypto.NoSuchPaddingException;
 
 import me.zhanghai.android.materialprogressbar.MaterialProgressBar;
 
@@ -99,8 +105,12 @@ public class MainActivity extends AppCompatActivity {
 
         fileAdapter.setRecyclerViewCallbacks(new FileAdapter.RecyclerViewCallbacks() {
             @Override
-            public void itemClicked(int position) {
-                showDialogFileDecrypt(dataSet.get(position).getFilePath());
+            public void itemClicked(int position) throws IndexOutOfBoundsException {
+                try {
+                    showDialogFileDecrypt(dataSet.get(position).getFilePath());
+                } catch (IndexOutOfBoundsException ex) {
+                    Log.e(TAG, "itemClicked() -> ", ex);
+                }
             }
         });
 
@@ -133,7 +143,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         dataSet.clear();
-        fileScanner.scan(new File(rootPath), dataSet); // TODO remove "/"
+        fileScanner.scan(new File(rootPath), dataSet);
     }
 
     private void refreshLayout() {
@@ -167,15 +177,7 @@ public class MainActivity extends AppCompatActivity {
         dialogFileEncrypt.setDialogCallbacks(new DialogFileEncrypt.DialogCallbacks() {
             @Override
             public void onPositive() {
-                try {
-                    Encryption.encrypt("MyDifficultPassw", new File(filePath));
-                    showInfo("File encrypted");
-                } catch (Exception ex) {
-                    Log.e(TAG, "onClick() -> ", ex);
-                    showInfo("Error while encrypting file");
-                } finally {
-                    refreshAdapterItems();
-                }
+                performEncryption(filePath);
             }
         });
         dialogFileEncrypt.show(getSupportFragmentManager(), "DialogFileEncrypt");
@@ -187,18 +189,58 @@ public class MainActivity extends AppCompatActivity {
         dialogFileDecrypt.setDialogCallbacks(new DialogFileDecrypt.DialogCallbacks() {
             @Override
             public void onPositive() {
-                try {
-                    Encryption.decrypt("MyDifficultPassw", new File(filePath));
-                    showInfo("File decrypted");
-                } catch (Exception ex) {
-                    Log.e(TAG, "onClick() -> ", ex);
-                    showInfo("Error while decrypting file");
-                } finally {
-                    refreshAdapterItems();
-                }
+                performDecryption(filePath);
             }
         });
         dialogFileDecrypt.show(getSupportFragmentManager(), "DialogFileDecrypt");
+    }
+
+    private void performEncryption(String filePath) {
+        try {
+            Encryption.encrypt("MyDifficultPassw", new File(filePath));
+            showInfo("File encrypted");
+        } catch (NoSuchAlgorithmException ex) {
+            Log.e(TAG, "onClick() -> ", ex);
+            showInfo("Error while encrypting file");
+        } catch (NoSuchPaddingException ex) {
+            Log.e(TAG, "onClick() -> ", ex);
+            showInfo("Error while encrypting file");
+        } catch (InvalidKeyException ex) {
+            Log.e(TAG, "onClick() -> ", ex);
+            showInfo("Error while encrypting file");
+        } catch (UnsupportedEncodingException ex) {
+            Log.e(TAG, "onClick() -> ", ex);
+            showInfo("Error while encrypting file");
+        } catch (IOException ex) {
+            Log.e(TAG, "onClick() -> ", ex);
+            showInfo("Error while encrypting file");
+        } finally {
+            refreshAdapterItems();
+        }
+    }
+
+    private void performDecryption(String filePath) {
+        try {
+            Encryption.decrypt("MyDifficultPassw", new File(filePath));
+            showInfo("File decrypted");
+        } catch (NoSuchAlgorithmException ex) {
+            Log.e(TAG, "onClick() -> ", ex);
+            showInfo("Error while decrypting file");
+        } catch (NoSuchPaddingException ex) {
+            Log.e(TAG, "onClick() -> ", ex);
+            showInfo("Error while decrypting file");
+        } catch (InvalidKeyException ex) {
+            Log.e(TAG, "onClick() -> ", ex);
+            showInfo("Error while decrypting file");
+        } catch (UnsupportedEncodingException ex) {
+            Log.e(TAG, "onClick() -> ", ex);
+            showInfo("Error while decrypting file");
+        } catch (IOException ex) {
+            Log.e(TAG, "onClick() -> ", ex);
+            showInfo("Error while decrypting file");
+        } finally {
+            refreshAdapterItems();
+        }
     }
 
     @Override

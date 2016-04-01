@@ -2,6 +2,7 @@ package com.android.hidemyfile.Support.File;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,9 @@ import com.bumptech.glide.Glide;
 import java.util.ArrayList;
 
 public class FileAdapter extends RecyclerView.Adapter<FileAdapter.BaseViewHolder> {
+
+    private static final String TAG = "FileAdapter";
+
 
     private Context context;
     private ArrayList<FileModel> dataSet;
@@ -57,6 +61,10 @@ public class FileAdapter extends RecyclerView.Adapter<FileAdapter.BaseViewHolder
         TextView fileName = holder.fileName;
         TextView filePath = holder.filePath;
 
+        Log.d(TAG, "onBindViewHolder() -> Adding new item: " +
+                "\nName: " + fileModel.getFileName() +
+                "\nPath: " + fileModel.getFilePath());
+
         Glide
                 .with(context)
                 .load(FileUtils.getIconFromType(
@@ -90,6 +98,6 @@ public class FileAdapter extends RecyclerView.Adapter<FileAdapter.BaseViewHolder
     }
 
     public interface RecyclerViewCallbacks {
-        void itemClicked(int position);
+        void itemClicked(int position) throws IndexOutOfBoundsException;
     }
 }

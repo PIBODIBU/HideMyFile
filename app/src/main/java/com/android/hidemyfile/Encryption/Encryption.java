@@ -6,8 +6,11 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.security.InvalidKeyException;
+import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Arrays;
 
 import javax.crypto.Cipher;
 import javax.crypto.CipherInputStream;
@@ -25,12 +28,11 @@ public class Encryption {
         File newFile = new File(filePath);
 
         FileInputStream fileInputStream = new FileInputStream(file);
-        // This stream write the encrypted text. This stream will be wrapped by another stream.
         FileOutputStream fileOutputStream = new FileOutputStream(newFile);
 
         // Length is 16 byte
         // Careful when taking user input!!! http://stackoverflow.com/a/3452620/1188357
-        SecretKeySpec secretKeySpec = new SecretKeySpec("MyDifficultPassw".getBytes(), "AES");
+        SecretKeySpec secretKeySpec = new SecretKeySpec(getKeyFromString(secretKey), "AES");
 
         // Create cipher
         Cipher cipher = Cipher.getInstance("AES");
@@ -62,7 +64,7 @@ public class Encryption {
 
         FileInputStream fileInputStream = new FileInputStream(file);
         FileOutputStream fileOutputStream = new FileOutputStream(newFile);
-        SecretKeySpec secretKeySpec = new SecretKeySpec("MyDifficultPassw".getBytes(), "AES");
+        SecretKeySpec secretKeySpec = new SecretKeySpec(getKeyFromString(secretKey), "AES");
 
         Cipher cipher = Cipher.getInstance("AES");
         cipher.init(Cipher.DECRYPT_MODE, secretKeySpec);
@@ -79,5 +81,19 @@ public class Encryption {
         fileOutputStream.flush();
         fileOutputStream.close();
         cipherInputStream.close();
+    }
+
+    private static String getSalt() {
+        return "fucking_static_salt";
+    }
+
+    private static byte[] getKeyFromString(String stringKey) throws UnsupportedEncodingException, NoSuchAlgorithmException {
+        byte[] key = (getSalt() + stringKey).getBytes("UTF-8");
+        MessageDigest sha = MessageDigest.getInstance("SHA-1");
+
+        key = sha.digest(key);
+        key = Arrays.copyOf(key, 16); // use only first 128 bit
+
+        return key;
     }
 }

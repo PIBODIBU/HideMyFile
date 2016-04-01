@@ -14,8 +14,12 @@
         android:paddingRight="16dp"
         android:paddingStart="24dp"
         android:paddingTop="16dp"
-        android:text="Do you want to decrypt this file?"
+        android:text="Type password: "
         android:textColor="@color/colorTextPrimary"
         android:textSize="18sp" />
+    
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height=""></android.support.design.widget.TextInputLayout>
 
 </LinearLayout>

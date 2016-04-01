@@ -1,8 +1,5 @@
 package com.android.hidemyfile.Support.File;
 
-import android.content.Context;
-import android.media.MediaScannerConnection;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.util.Log;
 
@@ -53,16 +50,19 @@ public class FileScanner {
         File[] list = root.listFiles();
 
         if (list != null) {
-            for (File f : list) {
-                if (!f.getName().startsWith(".")) {
-                    if (f.isDirectory()) {
-                        Log.d(TAG, "scanRecursively() -> Dir: " + f.getAbsoluteFile());
-                        scanRecursively(f, fileModels);
+            for (File file : list) {
+                if (!file.getName().startsWith(".")) {
+                    if (file.isDirectory()) {
+                        Log.d(TAG, "scanRecursively() -> Dir: " + file.getAbsoluteFile());
+                        scanRecursively(file, fileModels);
                     } else {
-                        Log.d(TAG, "scanRecursively() -> File: " + f.getAbsoluteFile());
+                        Log.d(TAG, "scanRecursively() -> File: " + file.getAbsoluteFile());
 
-                        if (f.getName().endsWith(Encryption.FILE_PREFIX)) {
-                            fileModels.add(new FileModel(FileUtils.removeEncryptPreffix(f.getName()), f.getAbsolutePath()));
+                        if (file.getName().endsWith(Encryption.FILE_PREFIX)) {
+                            fileModels.add(new FileModel(FileUtils.removeEncryptionPreffix(file.getName()), file.getAbsolutePath()));
+                            Log.d(TAG, "scanRecursively() -> Adding new item: " +
+                                    "\nName: " + FileUtils.removeEncryptionPreffix(file.getName()) +
+                                    "\nPath: " + file.getPath());
                         }
                     }
                 }
