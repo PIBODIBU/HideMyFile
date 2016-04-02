@@ -3,7 +3,6 @@ package com.android.hidemyfile.Activity;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.Environment;
 import android.os.Handler;
@@ -12,10 +11,12 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -167,6 +168,27 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.toolbar_action_refresh:
                 refreshAdapterItems();
+                break;
+
+            case R.id.toolbar_action_more:
+
+                PopupMenu popupMenu = new PopupMenu(this, view);
+                popupMenu.inflate(R.menu.main_more);
+                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        switch (item.getItemId()) {
+                            case R.id.settings:
+                                startActivity(new Intent(MainActivity.this, SettingsActivity.class));
+                                break;
+                            default:
+                                break;
+                        }
+                        return true;
+                    }
+                });
+                popupMenu.show();
+
                 break;
             default:
                 break;
@@ -338,9 +360,7 @@ public class MainActivity extends AppCompatActivity {
         intent.addCategory(Intent.CATEGORY_OPENABLE);
 
         try {
-            startActivityForResult(
-                    Intent.createChooser(intent, "Select a File to Upload"),
-                    FILE_SELECT_CODE);
+            startActivityForResult(Intent.createChooser(intent, "Select a File to Encrypt"), FILE_SELECT_CODE);
         } catch (android.content.ActivityNotFoundException ex) {
             showInfo("Please install a File Manager");
         }

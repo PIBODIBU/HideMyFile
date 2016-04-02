@@ -94,12 +94,36 @@ public class DecryptionTask extends AsyncTask<Void, Void, Void> {
     }
 
     public interface DecryptionCallbacks {
+        /**
+         * Called before decryption process wa started
+         */
         void onPrepare();
 
+        /**
+         * Decryption process was completed
+         * <p>
+         * This method will be called without reference to result.
+         * You can use it to remove {@link android.app.ProgressDialog}
+         * </p>
+         */
         void onComplete();
 
+        /**
+         * Decryption process was completed
+         * <p/>
+         * <p>
+         * This method will be called only if decryption process was successful.
+         * </p>
+         *
+         * @param decryptedFilePath - Path of decrypted file
+         */
         void onSuccess(String decryptedFilePath);
 
+        /**
+         * Exception was trowed during decryption process
+         *
+         * @param exceptionCode - Code of trowed exception {@link DecryptionTask#IO_EXCEPTION}
+         */
         void onException(int exceptionCode);
     }
 }

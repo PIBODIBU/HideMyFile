@@ -3,8 +3,21 @@
     <string name="activity_settings_title">Settings</string>
 
 
-    <string name="setting_show_hidden_title">Scan hidden directories</string>
-    <string name="setting_show_hidden_subtitle">Enable or disable scanning of hidden directories</string>
+    <string name="menu_main_settings_title">Settings</string>
+
+
+    <string name="settings_general_title">General</string>
+    <string name="settings_security_title">Security</string>
+
+    <string name="setting_general_show_hidden_title">Scan hidden directories</string>
+    <string name="setting_general_show_hidden_subtitle">Enable or disable scanning of hidden directories</string>
+    <string name="setting_general_hide_after_title">Hide file after encryption</string>
+    <string name="setting_general_hide_after_subtitle">Enable if you want to hide file after encryption (i.e. add preffix before file name)</string>
+
+    <string name="setting_security_password_change_title">Change password</string>
+    <string name="setting_security_password_change_subtitle">Change 4-digit password</string>
+    <string name="setting_security_read_more_title">Read more</string>
+    <string name="setting_security_read_more_subtitle">Read more about basic security rules of application</string>
 
 
     <string name="dialog_encryption_hint">Password</string>
@@ -25,6 +38,6 @@
     <string name="dialog_decryption_error_long">Too long password</string>
 
 
-    <string name="dialog_loading_encryption">Encryption in progress…</string>
-    <string name="dialog_loading_decryption">Decryption in progress…</string>
+    <string name="dialog_loading_encryption">Encrypting in progress…</string>
+    <string name="dialog_loading_decryption">Decrypting in progress…</string>
 </resources>
