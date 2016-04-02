@@ -22,6 +22,10 @@
         <activity
             android:name=".Activity.SettingsActivity"
             android:label="@string/activity_settings_title" />
+
+        <activity
+            android:name=".Activity.LoginActivity"
+            android:label="@string/activity_login_title" />
     </application>
 
 </manifest>

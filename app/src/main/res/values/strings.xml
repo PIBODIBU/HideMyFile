@@ -1,9 +1,15 @@
 <resources>
     <string name="app_name">Hide My File</string>
     <string name="activity_settings_title">Settings</string>
+    <string name="activity_login_title">Login</string>
+
+
+    <string name="login_hello">Please, enter password:</string>
+    <string name="login_hint">Login</string>
 
 
     <string name="menu_main_settings_title">Settings</string>
+    <string name="menu_login_more_title">More</string>
 
 
     <string name="settings_general_title">General</string>

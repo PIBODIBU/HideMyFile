@@ -53,7 +53,7 @@
         <item name="colorControlActivated">@color/colorPrimary</item>
         <item name="colorControlHighlight">@color/colorPrimary</item>
 
-        <item name="android:textColorHint">@color/colorTextSecondary</item>
+        <item name="android:textColorHint">@color/colorPrimary</item>
         <item name="android:textColorHighlight">@color/colorPrimary</item>
         <item name="android:textColorLink">@color/colorPrimary</item>
     </style>
@@ -64,7 +64,7 @@
         <item name="colorAccent">@color/colorPrimary</item>
         <item name="colorPrimary">@color/colorPrimary</item>
 
-        <item name="colorControlNormal">@color/colorTextSecondary</item>
+        <item name="colorControlNormal">@color/colorPrimary</item>
         <item name="colorControlActivated">@color/colorPrimary</item>
         <item name="colorControlHighlight">@color/colorPrimary</item>
 
@@ -72,6 +72,16 @@
     </style>
 
     <style name="AppTheme.TextInputLayout.ErrorAppearance" parent="@android:style/TextAppearance">
+        <item name="android:textColor">@color/md_red_500</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="AppTheme.TextInputLayout.CounterAppearance" parent="@android:style/TextAppearance">
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="AppTheme.TextInputLayout.CounterOverflowAppearance" parent="@android:style/TextAppearance">
         <item name="android:textColor">@color/md_red_500</item>
         <item name="android:textSize">12sp</item>
     </style>

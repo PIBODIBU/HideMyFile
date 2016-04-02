@@ -173,7 +173,7 @@ public class MainActivity extends AppCompatActivity {
             case R.id.toolbar_action_more:
 
                 PopupMenu popupMenu = new PopupMenu(this, view);
-                popupMenu.inflate(R.menu.main_more);
+                popupMenu.inflate(R.menu.main_popup);
                 popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {

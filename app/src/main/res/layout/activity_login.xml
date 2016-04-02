@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        style="@style/AppTheme.ToolBar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        app:contentInsetEnd="0dp"
+        app:contentInsetLeft="0dp"
+        app:contentInsetRight="0dp"
+        app:contentInsetStart="0dp">
+
+        <ImageButton
+            android:layout_width="?attr/actionBarSize"
+            android:layout_height="match_parent"
+            android:layout_gravity="right|end"
+            android:background="@drawable/adapter_item_bg"
+            android:src="@drawable/ic_more_vert_white_24dp" />
+
+    </android.support.v7.widget.Toolbar>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/text_input_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="36dp"
+        android:hint="@string/dialog_decryption_hint"
+        app:counterEnabled="true"
+        app:counterMaxLength="4"
+        app:counterOverflowTextAppearance="@style/AppTheme.TextInputLayout.CounterOverflowAppearance"
+        app:counterTextAppearance="@style/AppTheme.TextInputLayout.CounterAppearance"
+        app:errorEnabled="true"
+        app:errorTextAppearance="@style/AppTheme.TextInputLayout.ErrorAppearance"
+        app:theme="@style/AppTheme.TextInputLayout">
+
+        <android.support.v7.widget.AppCompatEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="numberPassword"
+            android:maxLines="1"
+            android:textColor="@color/colorTextPrimary"
+            android:textCursorDrawable="@drawable/cursor"
+            app:theme="@style/AppTheme.TextInputLayout.EditText" />
+    </android.support.design.widget.TextInputLayout>
+
+    <Button
+        style="?attr/borderlessButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right|end"
+        android:layout_margin="16dp"
+        android:background="@drawable/button_background"
+        android:text="OK"
+        android:textColor="@color/white" />
+</LinearLayout>
