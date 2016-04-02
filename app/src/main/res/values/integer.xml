@@ -2,4 +2,8 @@
 <resources>
     <integer name="password_length_min">6</integer>
     <integer name="password_length_max">20</integer>
+
+
+    <integer name="password_4_length_min">4</integer>
+    <integer name="password_4_length_max">4</integer>
 </resources>

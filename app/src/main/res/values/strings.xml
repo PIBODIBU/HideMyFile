@@ -4,8 +4,19 @@
     <string name="activity_login_title">Login</string>
 
 
-    <string name="login_hello">Please, enter password:</string>
+    <string name="login_hello">Please, enter 4-digit password:</string>
+    <string name="login_button_login">Login</string>
+    <string name="login_button_help">Need help?</string>
+    <string name="login_button_more">Know more</string>
     <string name="login_hint">Login</string>
+    <string name="login_error_bad_password">Bad password</string>
+
+    <string name="login_dialog_error_title">Warning!</string>
+    <string name="login_dialog_error_message">Bad password. Please, try again</string>
+
+    <string name="login_error_message_too_short">Too short password</string>
+    <string name="login_error_message_too_long">Too long password</string>
+    <string name="login_error_message_empty">Type password</string>
 
 
     <string name="menu_main_settings_title">Settings</string>

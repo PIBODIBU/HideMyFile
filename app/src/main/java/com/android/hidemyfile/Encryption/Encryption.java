@@ -3,6 +3,7 @@ package com.android.hidemyfile.Encryption;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.util.Base64;
 import android.util.Log;
 
 import java.io.File;
@@ -13,12 +14,15 @@ import java.io.UnsupportedEncodingException;
 import java.security.InvalidKeyException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.security.spec.AlgorithmParameterSpec;
 import java.util.Arrays;
 
 import javax.crypto.Cipher;
 import javax.crypto.CipherInputStream;
 import javax.crypto.CipherOutputStream;
 import javax.crypto.NoSuchPaddingException;
+import javax.crypto.SecretKey;
+import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
 /**
@@ -29,6 +33,8 @@ public class Encryption {
     private static final String TAG = "Encryption";
 
     public static final String FILE_PREFIX = ".encrypted";
+    public static final String FILE_PASSWORD_HASH_NAME = "p4d.key";
+    public static final String FILE_PASSWORD_DEFAULT = "0000";
 
     private static final String ENCRYPTION_AES = "AES";
     private static final String ENCRYPTION_SHA1 = "SHA-1";
@@ -99,6 +105,25 @@ public class Encryption {
         scanMediaWithIntent(context, newFile);
 
         return filePath;
+    }
+
+    public static String encrypt(String value) {
+        try {
+            IvParameterSpec ivParameterSpec = new IvParameterSpec(getKeyFromString(getSalt()));
+            SecretKeySpec secretKeySpec = new SecretKeySpec(getKeyFromString(value), ENCRYPTION_AES);
+
+            Cipher cipher = Cipher.getInstance(ENCRYPTION_AES);
+            cipher.init(Cipher.ENCRYPT_MODE, secretKeySpec, ivParameterSpec);
+
+            byte[] encrypted = cipher.doFinal(value.getBytes());
+            Log.d(TAG, "encrypted string: " + Base64.encodeToString(encrypted, Base64.DEFAULT));
+
+            return Base64.encodeToString(encrypted, Base64.DEFAULT);
+        } catch (Exception ex) {
+            Log.e(TAG, "encrypt() -> ", ex);
+        }
+
+        return null;
     }
 
     /**
