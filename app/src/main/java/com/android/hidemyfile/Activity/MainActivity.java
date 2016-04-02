@@ -3,6 +3,7 @@ package com.android.hidemyfile.Activity;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.Environment;
 import android.os.Handler;
@@ -25,7 +26,6 @@ import com.android.hidemyfile.AsyncTask.DecryptionTask;
 import com.android.hidemyfile.AsyncTask.EncryptionTask;
 import com.android.hidemyfile.Dialog.DialogFileDecrypt;
 import com.android.hidemyfile.Dialog.DialogFileEncrypt;
-import com.android.hidemyfile.Encryption.Encryption;
 import com.android.hidemyfile.R;
 import com.android.hidemyfile.Support.File.FileAdapter;
 import com.android.hidemyfile.Support.File.FileModel;
@@ -33,13 +33,7 @@ import com.android.hidemyfile.Support.File.FileScanner;
 import com.android.hidemyfile.Support.File.FileUtils;
 
 import java.io.File;
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
-
-import javax.crypto.NoSuchPaddingException;
 
 import me.zhanghai.android.materialprogressbar.MaterialProgressBar;
 
@@ -159,6 +153,13 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    private void scanMediaWithIntent(String path) {
+        File file = new File(path);
+        Uri uri = Uri.fromFile(file);
+        Intent scanFileIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, uri);
+        sendBroadcast(scanFileIntent);
+    }
+
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.button_choose:
@@ -202,7 +203,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void performEncryption(String secretKey, String filePath) {
-        EncryptionTask encryptionTask = new EncryptionTask(secretKey, filePath);
+        EncryptionTask encryptionTask = new EncryptionTask(this, secretKey, filePath);
         encryptionTask.setEncryptionCallbacks(new EncryptionTask.EncryptionCallbacks() {
             private ProgressDialog loadingDialog;
 
@@ -231,7 +232,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onSuccess() {
+            public void onSuccess(String encryptedFilePath) {
                 showInfo("File encrypted");
             }
 
@@ -253,7 +254,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void performDecryption(String secretKey, String filePath) {
-        DecryptionTask decryptionTask = new DecryptionTask(secretKey, filePath);
+        DecryptionTask decryptionTask = new DecryptionTask(this, secretKey, filePath);
         decryptionTask.setDecryptionCallbacks(new DecryptionTask.DecryptionCallbacks() {
             private ProgressDialog loadingDialog;
 
@@ -282,7 +283,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onSuccess() {
+            public void onSuccess(String decryptedFilePath) {
                 showInfo("File decrypted");
             }
 

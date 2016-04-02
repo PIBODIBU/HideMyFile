@@ -1,5 +1,6 @@
 package com.android.hidemyfile.AsyncTask;
 
+import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
 
@@ -18,6 +19,7 @@ public class DecryptionTask extends AsyncTask<Void, Void, Void> {
     private static final String TAG = "DecryptionTask";
     private DecryptionCallbacks decryptionCallbacks;
 
+    private Context context;
     private String secretKey;
     private String filePath;
 
@@ -27,7 +29,8 @@ public class DecryptionTask extends AsyncTask<Void, Void, Void> {
     public static int UNSUPPORTED_ENCODING_EXCEPTION = 3;
     public static int IO_EXCEPTION = 4;
 
-    public DecryptionTask(String secretKey, String filePath) {
+    public DecryptionTask(Context context, String secretKey, String filePath) {
+        this.context = context;
         this.secretKey = secretKey;
         this.filePath = filePath;
     }
@@ -43,10 +46,11 @@ public class DecryptionTask extends AsyncTask<Void, Void, Void> {
     protected Void doInBackground(Void... params) {
 
         try {
-            Encryption.decrypt(secretKey, new File(filePath));
+            String decryptedFilePath;
+            decryptedFilePath = Encryption.decrypt(context, secretKey, new File(filePath));
 
             if (decryptionCallbacks != null) {
-                decryptionCallbacks.onSuccess();
+                decryptionCallbacks.onSuccess(decryptedFilePath);
             }
         } catch (NoSuchAlgorithmException ex) {
             Log.e(TAG, "doInBackground() -> ", ex);
@@ -94,7 +98,7 @@ public class DecryptionTask extends AsyncTask<Void, Void, Void> {
 
         void onComplete();
 
-        void onSuccess();
+        void onSuccess(String decryptedFilePath);
 
         void onException(int exceptionCode);
     }

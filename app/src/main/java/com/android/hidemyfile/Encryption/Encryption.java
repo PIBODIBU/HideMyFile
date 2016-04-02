@@ -1,5 +1,9 @@
 package com.android.hidemyfile.Encryption;
 
+import android.content.Context;
+import android.content.Intent;
+import android.media.MediaScannerConnection;
+import android.net.Uri;
 import android.util.Log;
 
 import java.io.File;
@@ -23,7 +27,7 @@ public class Encryption {
     private static final String TAG = "Encryption";
     public static final String FILE_PREFIX = ".encrypted";
 
-    public static String encrypt(String secretKey, File file) throws IOException, NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException {
+    public static String encrypt(Context context, String secretKey, File file) throws IOException, NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException {
         String filePath = file.getPath() + FILE_PREFIX;
         File newFile = new File(filePath);
 
@@ -57,10 +61,13 @@ public class Encryption {
             Log.e(TAG, "encrypt() -> Error while deleting original file");
         }
 
+        scanMediaWithIntent(context, file);
+        scanMediaWithIntent(context, newFile);
+
         return filePath;
     }
 
-    public static void decrypt(String secretKey, File file) throws IOException, NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException {
+    public static String decrypt(Context context, String secretKey, File file) throws IOException, NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException {
         String filePath = file.getPath().replace(FILE_PREFIX, "");
         File newFile = new File(filePath);
 
@@ -87,6 +94,11 @@ public class Encryption {
         } else {
             Log.e(TAG, "decrypt() -> Error while deleting original file");
         }
+
+        scanMediaWithIntent(context, file);
+        scanMediaWithIntent(context, newFile);
+
+        return filePath;
     }
 
     private static String getSalt() {
@@ -101,5 +113,11 @@ public class Encryption {
         key = Arrays.copyOf(key, 16); // use only first 128 bit
 
         return key;
+    }
+
+    private static void scanMediaWithIntent(Context context, File file) {
+        Uri uri = Uri.fromFile(file);
+        Intent scanFileIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, uri);
+        context.sendBroadcast(scanFileIntent);
     }
 }

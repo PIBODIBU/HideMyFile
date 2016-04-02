@@ -1,5 +1,10 @@
 <resources>
     <string name="app_name">Hide My File</string>
+    <string name="activity_settings_title">Settings</string>
+
+
+    <string name="setting_show_hidden_title">Scan hidden directories</string>
+    <string name="setting_show_hidden_subtitle">Enable or disable scanning of hidden directories</string>
 
 
     <string name="dialog_encryption_hint">Password</string>
