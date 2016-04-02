@@ -29,6 +29,11 @@
 
     </android.support.v7.widget.Toolbar>
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2.3dp"
+        android:background="@drawable/shadow_down" />
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -44,6 +49,7 @@
         android:id="@+id/text_input_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginTop="36dp"
@@ -65,6 +71,11 @@
             android:textCursorDrawable="@drawable/cursor"
             app:theme="@style/AppTheme.TextInputLayout.EditText" />
     </android.support.design.widget.TextInputLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2.3dp"
+        android:background="@drawable/shadow_down" />
 
     <Button
         android:id="@+id/button_login"

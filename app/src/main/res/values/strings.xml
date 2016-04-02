@@ -20,6 +20,7 @@
 
 
     <string name="menu_main_settings_title">Settings</string>
+    <string name="menu_main_exit_title">Exit</string>
     <string name="menu_login_more_title">More</string>
 
 

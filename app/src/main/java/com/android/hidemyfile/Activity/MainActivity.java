@@ -171,7 +171,6 @@ public class MainActivity extends AppCompatActivity {
                 break;
 
             case R.id.toolbar_action_more:
-
                 PopupMenu popupMenu = new PopupMenu(this, view);
                 popupMenu.inflate(R.menu.main_popup);
                 popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
@@ -180,6 +179,11 @@ public class MainActivity extends AppCompatActivity {
                         switch (item.getItemId()) {
                             case R.id.settings:
                                 startActivity(new Intent(MainActivity.this, SettingsActivity.class));
+                                break;
+                            case R.id.exit:
+                                startActivity(new Intent(MainActivity.this, LoginActivity.class)
+                                        .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+                                finish();
                                 break;
                             default:
                                 break;
