@@ -4,8 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    android:descendantFocusability="afterDescendants"
-    android:focusable="true"
+    android:focusable="false"
     android:focusableInTouchMode="true"
     android:orientation="vertical"
     android:paddingBottom="8dp">
@@ -16,11 +15,11 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
+        android:layout_marginTop="24dp"
+        android:hint="@string/dialog_decryption_hint"
         app:counterMaxLength="@integer/password_length_max"
         app:counterOverflowTextAppearance="@style/AppTheme.TextInputLayout.CounterOverflowAppearance"
         app:counterTextAppearance="@style/AppTheme.TextInputLayout.CounterAppearance"
-        android:layout_marginTop="24dp"
-        android:hint="@string/dialog_decryption_hint"
         app:errorEnabled="true"
         app:errorTextAppearance="@style/AppTheme.TextInputLayout.ErrorAppearance"
         app:theme="@style/AppTheme.TextInputLayout">
@@ -49,7 +48,7 @@
             style="?android:attr/borderlessButtonStyle"
             android:layout_width="100dp"
             android:layout_height="40dp"
-            android:background="@drawable/adapter_item_bg"
+            android:background="@drawable/clickable_item_transparent"
             android:text="@string/dialog_decryption_negative"
             android:textColor="@color/black"
             android:textSize="14sp" />
@@ -59,7 +58,7 @@
             style="?android:attr/borderlessButtonStyle"
             android:layout_width="100dp"
             android:layout_height="40dp"
-            android:background="@drawable/adapter_item_bg"
+            android:background="@drawable/clickable_item_transparent"
             android:text="@string/dialog_decryption_positive"
             android:textColor="@color/colorPrimary"
             android:textSize="14sp" />

@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/root_view"
     android:layout_width="match_parent"
-    android:background="@color/white_dark"
     android:layout_height="match_parent"
+    android:background="@color/white_dark"
     tools:context=".Activity.MainActivity">
 
     <android.support.design.widget.AppBarLayout
@@ -30,9 +30,9 @@
                 android:layout_width="?attr/actionBarSize"
                 android:layout_height="match_parent"
                 android:layout_gravity="right|end"
-                android:background="@drawable/adapter_item_bg"
+                android:background="@drawable/clickable_item_transparent"
                 android:onClick="onClick"
-                android:src="@drawable/ic_more_vert_white_24dp" />
+                app:srcCompat="@drawable/ic_more_vert_white_24dp" />
 
             <me.zhanghai.android.materialprogressbar.MaterialProgressBar
                 android:id="@+id/toolbar_action_refresh_bar"
@@ -50,9 +50,9 @@
                 android:layout_width="?attr/actionBarSize"
                 android:layout_height="match_parent"
                 android:layout_gravity="right|end"
-                android:background="@drawable/adapter_item_bg"
+                android:background="@drawable/clickable_item_transparent"
                 android:onClick="onClick"
-                android:src="@drawable/ic_sync_white_24dp" />
+                app:srcCompat="@drawable/ic_sync_white_24dp" />
 
         </android.support.v7.widget.Toolbar>
     </android.support.design.widget.AppBarLayout>
@@ -83,7 +83,7 @@
                 android:id="@+id/image_message_empty"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:src="@drawable/ic_cancel_grey_24dp" />
+                app:srcCompat="@drawable/ic_error_outline_primary_24dp" />
 
             <TextView
                 android:id="@+id/text_message_empty"
@@ -103,11 +103,11 @@
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:onClick="onClick"
-        android:src="@drawable/ic_lock_white_24dp"
         app:backgroundTint="@color/accent"
         app:fabSize="normal"
         app:layout_anchor="@id/recycler_view"
         app:layout_anchorGravity="bottom|right|end"
+        app:srcCompat="@drawable/ic_lock_white_24dp"
         app:useCompatPadding="true" />
 
 </android.support.design.widget.CoordinatorLayout>

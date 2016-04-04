@@ -49,7 +49,7 @@
             style="?android:attr/borderlessButtonStyle"
             android:layout_width="100dp"
             android:layout_height="40dp"
-            android:background="@drawable/adapter_item_bg"
+            android:background="@drawable/clickable_item_transparent"
             android:text="@string/dialog_encryption_negative"
             android:textColor="@color/black"
             android:textSize="14sp" />
@@ -59,7 +59,7 @@
             style="?android:attr/borderlessButtonStyle"
             android:layout_width="100dp"
             android:layout_height="40dp"
-            android:background="@drawable/adapter_item_bg"
+            android:background="@drawable/clickable_item_transparent"
             android:text="@string/dialog_encryption_positive"
             android:textColor="@color/colorPrimary"
             android:textSize="14sp" />

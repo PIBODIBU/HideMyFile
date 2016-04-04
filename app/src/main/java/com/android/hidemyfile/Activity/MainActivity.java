@@ -1,5 +1,6 @@
 package com.android.hidemyfile.Activity;
 
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -25,6 +26,7 @@ import android.widget.TextView;
 
 import com.android.hidemyfile.AsyncTask.DecryptionTask;
 import com.android.hidemyfile.AsyncTask.EncryptionTask;
+import com.android.hidemyfile.Dialog.DialogFileAction;
 import com.android.hidemyfile.Dialog.DialogFileDecrypt;
 import com.android.hidemyfile.Dialog.DialogFileEncrypt;
 import com.android.hidemyfile.R;
@@ -105,12 +107,31 @@ public class MainActivity extends AppCompatActivity {
 
         fileAdapter.setRecyclerViewCallbacks(new FileAdapter.RecyclerViewCallbacks() {
             @Override
-            public void itemClicked(int position) throws IndexOutOfBoundsException {
-                try {
-                    showDialogFileDecrypt(dataSet.get(position).getFilePath());
-                } catch (IndexOutOfBoundsException ex) {
-                    Log.e(TAG, "itemClicked() -> ", ex);
-                }
+            public void itemClicked(final int position) throws IndexOutOfBoundsException {
+                Log.d(TAG, "itemClicked() -> Position: " + position);
+
+                DialogFileAction dialogFileAction = new DialogFileAction();
+                dialogFileAction.setDialogCallbacks(new DialogFileAction.DialogCallBacks() {
+                    @Override
+                    public void onDecrypt(Dialog dialog) {
+                        dialog.dismiss();
+
+                        try {
+                            showDialogFileDecrypt(dataSet.get(position).getFilePath());
+                        } catch (IndexOutOfBoundsException ex) {
+                            Log.e(TAG, "itemClicked() -> ", ex);
+                        }
+                    }
+
+                    @Override
+                    public void onProperties(Dialog dialog) {
+                        dialog.dismiss();
+
+                        showInfo("Under development");
+                    }
+                });
+
+                dialogFileAction.show(getSupportFragmentManager(), "DialogFileAction");
             }
         });
 

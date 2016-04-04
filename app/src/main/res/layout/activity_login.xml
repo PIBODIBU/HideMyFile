@@ -24,14 +24,14 @@
             android:layout_width="?attr/actionBarSize"
             android:layout_height="match_parent"
             android:layout_gravity="right|end"
-            android:background="@drawable/adapter_item_bg"
-            android:src="@drawable/ic_more_vert_white_24dp" />
+            android:background="@drawable/clickable_item_transparent"
+            app:srcCompat="@drawable/ic_more_vert_white_24dp" />
 
     </android.support.v7.widget.Toolbar>
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="2.3dp"
+        android:layout_height="3dp"
         android:background="@drawable/shadow_down" />
 
     <TextView
@@ -45,84 +45,426 @@
         android:textColor="@color/colorTextPrimary"
         android:textSize="20sp" />
 
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/text_input_password"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginTop="36dp"
-        android:hint="@string/dialog_decryption_hint"
-        app:counterEnabled="true"
-        app:counterMaxLength="4"
-        app:counterOverflowTextAppearance="@style/AppTheme.TextInputLayout.CounterOverflowAppearance"
-        app:counterTextAppearance="@style/AppTheme.TextInputLayout.CounterAppearance"
-        app:errorEnabled="true"
-        app:errorTextAppearance="@style/AppTheme.TextInputLayout.ErrorAppearance"
-        app:theme="@style/AppTheme.TextInputLayout">
-
-        <android.support.v7.widget.AppCompatEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="numberPassword"
-            android:maxLines="1"
-            android:textColor="@color/colorTextPrimary"
-            android:textCursorDrawable="@drawable/cursor"
-            app:theme="@style/AppTheme.TextInputLayout.EditText" />
-    </android.support.design.widget.TextInputLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="2.3dp"
-        android:background="@drawable/shadow_down" />
-
-    <Button
-        android:id="@+id/button_login"
-        style="?attr/borderlessButtonStyle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="right|end"
-        android:layout_margin="16dp"
-        android:background="@drawable/button_background"
-        android:onClick="onClick"
-        android:text="@string/login_button_login"
-        android:textColor="@color/white" />
-
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:weightSum="2">
+        android:layout_height="24dp"
+        android:layout_marginTop="36dp"
+        android:gravity="center"
+        android:orientation="horizontal">
 
-        <Button
-            style="?attr/borderlessButtonStyle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right|end"
-            android:layout_marginEnd="4dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="4dp"
-            android:layout_marginStart="16dp"
-            android:layout_weight="1"
-            android:background="@drawable/button_background"
-            android:onClick="onClick"
-            android:text="@string/login_button_help"
-            android:textColor="@color/white" />
+        <ImageView
+            android:id="@+id/pwd_indicator_1"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_gravity="center"
+            android:layout_margin="8dp" />
 
-        <Button
-            style="?attr/borderlessButtonStyle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right|end"
-            android:layout_marginEnd="16dp"
-            android:layout_marginLeft="4dp"
-            android:layout_marginRight="16dp"
-            android:layout_marginStart="4dp"
-            android:layout_weight="1"
-            android:background="@drawable/button_background"
-            android:onClick="onClick"
-            android:text="@string/login_button_more"
-            android:textColor="@color/white" />
+        <ImageView
+            android:id="@+id/pwd_indicator_2"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_gravity="center"
+            android:layout_margin="8dp" />
+
+        <ImageView
+            android:id="@+id/pwd_indicator_3"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_gravity="center"
+            android:layout_margin="8dp" />
+
+        <ImageView
+            android:id="@+id/pwd_indicator_4"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_gravity="center"
+            android:layout_margin="8dp" />
     </LinearLayout>
+
+    <!--<android.support.design.widget.TextInputLayout-->
+    <!--android:id="@+id/text_input_password"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_marginBottom="16dp"-->
+    <!--android:layout_marginLeft="16dp"-->
+    <!--android:layout_marginRight="16dp"-->
+    <!--android:layout_marginTop="36dp"-->
+    <!--android:hint="@string/dialog_decryption_hint"-->
+    <!--android:visibility="gone"-->
+    <!--app:counterEnabled="true"-->
+    <!--app:counterMaxLength="4"-->
+    <!--app:counterOverflowTextAppearance="@style/AppTheme.TextInputLayout.CounterOverflowAppearance"-->
+    <!--app:counterTextAppearance="@style/AppTheme.TextInputLayout.CounterAppearance"-->
+    <!--app:errorEnabled="true"-->
+    <!--app:errorTextAppearance="@style/AppTheme.TextInputLayout.ErrorAppearance"-->
+    <!--app:theme="@style/AppTheme.TextInputLayout">-->
+
+    <!--<android.support.v7.widget.AppCompatEditText-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:inputType="numberPassword"-->
+    <!--android:maxLines="1"-->
+    <!--android:textColor="@color/colorTextPrimary"-->
+    <!--android:textCursorDrawable="@drawable/cursor"-->
+    <!--app:theme="@style/AppTheme.TextInputLayout.EditText" />-->
+    <!--</android.support.design.widget.TextInputLayout>-->
+
+    <!--<Button-->
+    <!--style="?attr/borderlessButtonStyle"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_gravity="right|end"-->
+    <!--android:layout_margin="16dp"-->
+    <!--android:background="@drawable/clickable_button"-->
+    <!--android:onClick="onClick"-->
+    <!--android:text="@string/login_button_login"-->
+    <!--android:textColor="@color/white"-->
+    <!--android:visibility="gone" />-->
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:layout_above="@+id/grid"
+            android:background="@drawable/shadow_up" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignTop="@+id/grid"
+            android:background="@color/colorPrimary" />
+
+        <GridLayout
+            android:id="@+id/grid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:columnCount="3"
+            android:paddingBottom="8dp"
+            android:paddingTop="8dp">
+
+            <LinearLayout
+                android:id="@+id/key_1"
+                android:layout_marginLeft="@dimen/keyboard_button_margin"
+                android:layout_marginRight="@dimen/keyboard_button_margin"
+                android:background="@drawable/clickable_button_transparent"
+                android:clickable="true"
+                android:onClick="onClick"
+                android:paddingBottom="@dimen/keyboard_button_padding_vertical"
+                android:paddingLeft="@dimen/keyboard_button_padding_horizontal"
+                android:paddingRight="24dp"
+                android:paddingTop="@dimen/keyboard_button_padding_vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minHeight="0dp"
+                    android:minWidth="0dp"
+                    android:padding="0dp"
+                    android:text="1"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/keyboard_text_size" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/key_2"
+                android:layout_marginLeft="@dimen/keyboard_button_margin"
+                android:layout_marginRight="@dimen/keyboard_button_margin"
+                android:background="@drawable/clickable_button_transparent"
+                android:clickable="true"
+                android:onClick="onClick"
+                android:paddingBottom="@dimen/keyboard_button_padding_vertical"
+                android:paddingLeft="@dimen/keyboard_button_padding_horizontal"
+                android:paddingRight="@dimen/keyboard_button_padding_horizontal"
+                android:paddingTop="@dimen/keyboard_button_padding_vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minHeight="0dp"
+                    android:minWidth="0dp"
+                    android:padding="0dp"
+                    android:text="2"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/keyboard_text_size" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="4dp"
+                    android:padding="0dp"
+                    android:text="ABC"
+                    android:textColor="@color/white" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/key_3"
+                android:layout_marginLeft="@dimen/keyboard_button_margin"
+                android:layout_marginRight="@dimen/keyboard_button_margin"
+                android:background="@drawable/clickable_button_transparent"
+                android:clickable="true"
+                android:onClick="onClick"
+                android:paddingBottom="@dimen/keyboard_button_padding_vertical"
+                android:paddingLeft="@dimen/keyboard_button_padding_horizontal"
+                android:paddingRight="@dimen/keyboard_button_padding_horizontal"
+                android:paddingTop="@dimen/keyboard_button_padding_vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minHeight="0dp"
+                    android:minWidth="0dp"
+                    android:padding="0dp"
+                    android:text="3"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/keyboard_text_size" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="4dp"
+                    android:padding="0dp"
+                    android:text="DEF"
+                    android:textColor="@color/white" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/key_4"
+                android:layout_marginLeft="@dimen/keyboard_button_margin"
+                android:layout_marginRight="@dimen/keyboard_button_margin"
+                android:background="@drawable/clickable_button_transparent"
+                android:clickable="true"
+                android:onClick="onClick"
+                android:paddingBottom="@dimen/keyboard_button_padding_vertical"
+                android:paddingLeft="@dimen/keyboard_button_padding_horizontal"
+                android:paddingRight="@dimen/keyboard_button_padding_horizontal"
+                android:paddingTop="@dimen/keyboard_button_padding_vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minHeight="0dp"
+                    android:minWidth="0dp"
+                    android:padding="0dp"
+                    android:text="4"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/keyboard_text_size" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="4dp"
+                    android:padding="0dp"
+                    android:text="GHI"
+                    android:textColor="@color/white" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/key_5"
+                android:layout_marginLeft="@dimen/keyboard_button_margin"
+                android:layout_marginRight="@dimen/keyboard_button_margin"
+                android:background="@drawable/clickable_button_transparent"
+                android:clickable="true"
+                android:onClick="onClick"
+                android:paddingBottom="@dimen/keyboard_button_padding_vertical"
+                android:paddingLeft="@dimen/keyboard_button_padding_horizontal"
+                android:paddingRight="@dimen/keyboard_button_padding_horizontal"
+                android:paddingTop="@dimen/keyboard_button_padding_vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minHeight="0dp"
+                    android:minWidth="0dp"
+                    android:padding="0dp"
+                    android:text="5"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/keyboard_text_size" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="4dp"
+                    android:padding="0dp"
+                    android:text="JKL"
+                    android:textColor="@color/white" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/key_6"
+                android:layout_marginLeft="@dimen/keyboard_button_margin"
+                android:layout_marginRight="@dimen/keyboard_button_margin"
+                android:background="@drawable/clickable_button_transparent"
+                android:clickable="true"
+                android:onClick="onClick"
+                android:paddingBottom="@dimen/keyboard_button_padding_vertical"
+                android:paddingLeft="@dimen/keyboard_button_padding_horizontal"
+                android:paddingRight="@dimen/keyboard_button_padding_horizontal"
+                android:paddingTop="@dimen/keyboard_button_padding_vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minHeight="0dp"
+                    android:minWidth="0dp"
+                    android:padding="0dp"
+                    android:text="6"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/keyboard_text_size" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="4dp"
+                    android:padding="0dp"
+                    android:text="MNO"
+                    android:textColor="@color/white" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/key_7"
+                android:layout_marginLeft="@dimen/keyboard_button_margin"
+                android:layout_marginRight="@dimen/keyboard_button_margin"
+                android:background="@drawable/clickable_button_transparent"
+                android:clickable="true"
+                android:onClick="onClick"
+                android:paddingBottom="@dimen/keyboard_button_padding_vertical"
+                android:paddingLeft="@dimen/keyboard_button_padding_horizontal"
+                android:paddingRight="@dimen/keyboard_button_padding_horizontal"
+                android:paddingTop="@dimen/keyboard_button_padding_vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minHeight="0dp"
+                    android:minWidth="0dp"
+                    android:padding="0dp"
+                    android:text="7"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/keyboard_text_size" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="4dp"
+                    android:padding="0dp"
+                    android:text="PQRS"
+                    android:textColor="@color/white" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/key_8"
+                android:layout_marginLeft="@dimen/keyboard_button_margin"
+                android:layout_marginRight="@dimen/keyboard_button_margin"
+                android:background="@drawable/clickable_button_transparent"
+                android:clickable="true"
+                android:onClick="onClick"
+                android:paddingBottom="@dimen/keyboard_button_padding_vertical"
+                android:paddingLeft="@dimen/keyboard_button_padding_horizontal"
+                android:paddingRight="@dimen/keyboard_button_padding_horizontal"
+                android:paddingTop="@dimen/keyboard_button_padding_vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minHeight="0dp"
+                    android:minWidth="0dp"
+                    android:padding="0dp"
+                    android:text="8"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/keyboard_text_size" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="4dp"
+                    android:padding="0dp"
+                    android:text="TUV"
+                    android:textColor="@color/white" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/key_9"
+                android:layout_marginLeft="@dimen/keyboard_button_margin"
+                android:layout_marginRight="@dimen/keyboard_button_margin"
+                android:background="@drawable/clickable_button_transparent"
+                android:clickable="true"
+                android:onClick="onClick"
+                android:paddingBottom="@dimen/keyboard_button_padding_vertical"
+                android:paddingLeft="@dimen/keyboard_button_padding_horizontal"
+                android:paddingRight="@dimen/keyboard_button_padding_horizontal"
+                android:paddingTop="@dimen/keyboard_button_padding_vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minHeight="0dp"
+                    android:minWidth="0dp"
+                    android:padding="0dp"
+                    android:text="9"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/keyboard_text_size" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="4dp"
+                    android:padding="0dp"
+                    android:text="WXYZ"
+                    android:textColor="@color/white" />
+            </LinearLayout>
+
+            <ImageButton
+                android:id="@+id/buton_backspace"
+                style="?attr/borderlessButtonStyle"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:background="@drawable/clickable_button_circle_accent"
+                android:onClick="onClick"
+                app:srcCompat="@drawable/ic_backspace_white_18dp" />
+
+            <LinearLayout
+                android:id="@+id/key_0"
+                android:layout_marginLeft="@dimen/keyboard_button_margin"
+                android:layout_marginRight="@dimen/keyboard_button_margin"
+                android:background="@drawable/clickable_button_transparent"
+                android:clickable="true"
+                android:onClick="onClick"
+                android:paddingBottom="@dimen/keyboard_button_padding_vertical"
+                android:paddingLeft="@dimen/keyboard_button_padding_horizontal"
+                android:paddingRight="24dp"
+                android:paddingTop="@dimen/keyboard_button_padding_vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minHeight="0dp"
+                    android:minWidth="0dp"
+                    android:padding="0dp"
+                    android:text="0"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/keyboard_text_size" />
+            </LinearLayout>
+
+            <ImageButton
+                android:id="@+id/button_login"
+                style="?attr/borderlessButtonStyle"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:background="@drawable/clickable_button_circle_accent"
+                android:onClick="onClick"
+                app:srcCompat="@drawable/ic_forward_white_18dp" />
+        </GridLayout>
+    </RelativeLayout>
 </LinearLayout>

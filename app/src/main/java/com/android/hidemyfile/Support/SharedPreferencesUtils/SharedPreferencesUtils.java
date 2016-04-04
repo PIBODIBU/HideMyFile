@@ -1,4 +1,4 @@
-package com.android.hidemyfile.Support.File.SharedPreferencesUtils;
+package com.android.hidemyfile.Support.SharedPreferencesUtils;
 
 import android.content.Context;
 import android.content.SharedPreferences;

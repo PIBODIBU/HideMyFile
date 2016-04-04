@@ -4,7 +4,7 @@
     <string name="activity_login_title">Login</string>
 
 
-    <string name="login_hello">Please, enter 4-digit password:</string>
+    <string name="login_hello">Please, enter password:</string>
     <string name="login_button_login">Login</string>
     <string name="login_button_help">Need help?</string>
     <string name="login_button_more">Know more</string>

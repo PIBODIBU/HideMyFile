@@ -3,8 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/white"
+    android:background="@drawable/clickable_item_transparent"
     android:clickable="true"
+    android:paddingBottom="8dp"
+    android:paddingTop="8dp"
     tools:context=".Activity.SettingsActivity">
 
     <TextView
@@ -13,7 +15,6 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
-        android:layout_marginTop="16dp"
         android:text="@string/setting_security_read_more_title"
         android:textColor="@color/colorTextPrimary"
         android:textSize="16sp" />

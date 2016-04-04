@@ -53,7 +53,7 @@
         <item name="colorControlActivated">@color/colorPrimary</item>
         <item name="colorControlHighlight">@color/colorPrimary</item>
 
-        <item name="android:textColorHint">@color/colorPrimary</item>
+        <item name="android:textColorHint">@color/colorHint</item>
         <item name="android:textColorHighlight">@color/colorPrimary</item>
         <item name="android:textColorLink">@color/colorPrimary</item>
     </style>
