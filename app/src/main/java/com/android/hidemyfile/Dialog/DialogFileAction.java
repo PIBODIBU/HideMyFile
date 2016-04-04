@@ -21,6 +21,7 @@ public class DialogFileAction extends BottomSheetDialogFragment {
 
         View VActionDecrypt = rootView.findViewById(R.id.action_decrypt);
         View VActionProperties = rootView.findViewById(R.id.action_properties);
+        View VActionDelete = rootView.findViewById(R.id.action_delete);
 
         VActionDecrypt.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -40,6 +41,15 @@ public class DialogFileAction extends BottomSheetDialogFragment {
             }
         });
 
+        VActionDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (dialogCallBacks != null) {
+                    dialogCallBacks.onDelete(dialog);
+                }
+            }
+        });
+
         dialog.setContentView(rootView);
         super.setupDialog(dialog, style);
     }
@@ -52,5 +62,7 @@ public class DialogFileAction extends BottomSheetDialogFragment {
         void onDecrypt(Dialog dialog);
 
         void onProperties(Dialog dialog);
+
+        void onDelete(Dialog dialog);
     }
 }

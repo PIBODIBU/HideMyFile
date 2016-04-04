@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 
+import com.android.hidemyfile.Encryption.Encryption;
+
 public class SharedPreferencesUtils {
 
     private static final String TAG = "SharedPreferencesUtils";
@@ -27,7 +29,7 @@ public class SharedPreferencesUtils {
 
     @NonNull
     public String getKey4Password() {
-        return sharedPreferences.getString(KEY_4_PASSWORD, "");
+        return sharedPreferences.getString(KEY_4_PASSWORD, Encryption.encrypt(Encryption.PASSWORD_4DIGIT_DEFAULT));
     }
 
     public void setScanHidden(@NonNull boolean scanHidden) {

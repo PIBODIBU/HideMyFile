@@ -14,6 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="@color/colorPrimary"
+        android:elevation="0dp"
         android:minHeight="?attr/actionBarSize"
         app:contentInsetEnd="0dp"
         app:contentInsetLeft="0dp"
@@ -31,7 +32,7 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="3dp"
+        android:layout_height="2.3dp"
         android:background="@drawable/shadow_down" />
 
     <TextView
@@ -80,46 +81,6 @@
             android:layout_gravity="center"
             android:layout_margin="8dp" />
     </LinearLayout>
-
-    <!--<android.support.design.widget.TextInputLayout-->
-    <!--android:id="@+id/text_input_password"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:layout_marginBottom="16dp"-->
-    <!--android:layout_marginLeft="16dp"-->
-    <!--android:layout_marginRight="16dp"-->
-    <!--android:layout_marginTop="36dp"-->
-    <!--android:hint="@string/dialog_decryption_hint"-->
-    <!--android:visibility="gone"-->
-    <!--app:counterEnabled="true"-->
-    <!--app:counterMaxLength="4"-->
-    <!--app:counterOverflowTextAppearance="@style/AppTheme.TextInputLayout.CounterOverflowAppearance"-->
-    <!--app:counterTextAppearance="@style/AppTheme.TextInputLayout.CounterAppearance"-->
-    <!--app:errorEnabled="true"-->
-    <!--app:errorTextAppearance="@style/AppTheme.TextInputLayout.ErrorAppearance"-->
-    <!--app:theme="@style/AppTheme.TextInputLayout">-->
-
-    <!--<android.support.v7.widget.AppCompatEditText-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:inputType="numberPassword"-->
-    <!--android:maxLines="1"-->
-    <!--android:textColor="@color/colorTextPrimary"-->
-    <!--android:textCursorDrawable="@drawable/cursor"-->
-    <!--app:theme="@style/AppTheme.TextInputLayout.EditText" />-->
-    <!--</android.support.design.widget.TextInputLayout>-->
-
-    <!--<Button-->
-    <!--style="?attr/borderlessButtonStyle"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:layout_gravity="right|end"-->
-    <!--android:layout_margin="16dp"-->
-    <!--android:background="@drawable/clickable_button"-->
-    <!--android:onClick="onClick"-->
-    <!--android:text="@string/login_button_login"-->
-    <!--android:textColor="@color/white"-->
-    <!--android:visibility="gone" />-->
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -420,16 +381,13 @@
             </LinearLayout>
 
             <ImageButton
-                android:id="@+id/buton_backspace"
-                style="?attr/borderlessButtonStyle"
-                android:layout_width="36dp"
-                android:layout_height="36dp"
+                android:id="@+id/button_backspace"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
                 android:layout_gravity="center"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
-                android:background="@drawable/clickable_button_circle_accent"
+                android:background="@android:color/transparent"
                 android:onClick="onClick"
-                app:srcCompat="@drawable/ic_backspace_white_18dp" />
+                app:srcCompat="@drawable/ic_backspace_white_24dp" />
 
             <LinearLayout
                 android:id="@+id/key_0"
@@ -456,14 +414,12 @@
 
             <ImageButton
                 android:id="@+id/button_login"
-                style="?attr/borderlessButtonStyle"
                 android:layout_width="36dp"
                 android:layout_height="36dp"
                 android:layout_gravity="center"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
                 android:background="@drawable/clickable_button_circle_accent"
                 android:onClick="onClick"
+                android:padding="16dp"
                 app:srcCompat="@drawable/ic_forward_white_18dp" />
         </GridLayout>
     </RelativeLayout>

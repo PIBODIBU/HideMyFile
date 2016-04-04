@@ -6,7 +6,7 @@
 
     <dimen name="keyboard_text_size">36sp</dimen>
     <dimen name="keyboard_button_size">52sp</dimen>
-    <dimen name="keyboard_button_padding_horizontal">4dp</dimen>
+    <dimen name="keyboard_button_padding_horizontal">16dp</dimen>
     <dimen name="keyboard_button_padding_vertical">4dp</dimen>
-    <dimen name="keyboard_button_margin">18dp</dimen>
+    <dimen name="keyboard_button_margin">8dp</dimen>
 </resources>

@@ -28,6 +28,7 @@ import com.android.hidemyfile.AsyncTask.DecryptionTask;
 import com.android.hidemyfile.AsyncTask.EncryptionTask;
 import com.android.hidemyfile.Dialog.DialogFileAction;
 import com.android.hidemyfile.Dialog.DialogFileDecrypt;
+import com.android.hidemyfile.Dialog.DialogFileDelete;
 import com.android.hidemyfile.Dialog.DialogFileEncrypt;
 import com.android.hidemyfile.Encryption.Encryption;
 import com.android.hidemyfile.R;
@@ -121,7 +122,6 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onDecrypt(Dialog dialog) {
                         dialog.dismiss();
-
                         try {
                             showDialogFileDecrypt(dataSet.get(position).getFilePath());
                         } catch (IndexOutOfBoundsException ex) {
@@ -132,8 +132,13 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onProperties(Dialog dialog) {
                         dialog.dismiss();
-
                         showInfo("Under development");
+                    }
+
+                    @Override
+                    public void onDelete(Dialog dialog) {
+                        dialog.dismiss();
+                        showDialogFileDelete(position);
                     }
                 });
 
@@ -142,6 +147,22 @@ public class MainActivity extends AppCompatActivity {
         });
 
         refreshAdapterItems();
+    }
+
+    private void showDialogFileDelete(final int position) {
+        DialogFileDelete dialogFileDelete = new DialogFileDelete();
+        dialogFileDelete.setDialogCallbacks(new DialogFileDelete.DialogCallbacks() {
+            @Override
+            public void onPositive() {
+                if (FileUtils.deleteFile(dataSet.get(position).getFilePath())) {
+                    showInfo(getString(R.string.dialog_file_delete_successful));
+                } else {
+                    showInfo(getString(R.string.dialog_file_delete_unsuccessful));
+                }
+                refreshAdapterItems();
+            }
+        });
+        dialogFileDelete.show(getSupportFragmentManager(), "DialogFileDelete");
     }
 
     private void refreshAdapterItems() {
@@ -179,13 +200,6 @@ public class MainActivity extends AppCompatActivity {
         } else {
             messageRootView.setVisibility(View.GONE);
         }
-    }
-
-    private void scanMediaWithIntent(String path) {
-        File file = new File(path);
-        Uri uri = Uri.fromFile(file);
-        Intent scanFileIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, uri);
-        sendBroadcast(scanFileIntent);
     }
 
     public void onClick(View view) {

@@ -12,6 +12,7 @@
         android:id="@+id/app_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:elevation="0dp"
         android:fitsSystemWindows="true"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
@@ -22,6 +23,7 @@
             android:layout_height="?attr/actionBarSize"
             android:layout_alignParentTop="true"
             android:background="@color/colorPrimary"
+            android:elevation="0dp"
             android:gravity="center"
             android:minHeight="?attr/actionBarSize">
 
@@ -56,6 +58,12 @@
 
         </android.support.v7.widget.Toolbar>
     </android.support.design.widget.AppBarLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2.3dp"
+        android:background="@drawable/shadow_down"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_view"

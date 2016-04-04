@@ -84,7 +84,7 @@ public class LoginActivity extends AppCompatActivity {
                     showDialogBadPassword();
                 }
                 break;
-            case R.id.buton_backspace:
+            case R.id.button_backspace:
                 deleteSymbol();
                 break;
             case R.id.key_1:
@@ -206,9 +206,7 @@ public class LoginActivity extends AppCompatActivity {
     private boolean isUserInputValid(String userInput) {
         if (TextUtils.isEmpty(userInput)) {
             return false;
-        } else if (userInput.length() > getResources().getInteger(R.integer.password_4_length_max)) {
-            return false;
-        } else if (userInput.length() < getResources().getInteger(R.integer.password_4_length_min)) {
+        } else if (userInput.length() != getResources().getInteger(R.integer.password_4_length)) {
             return false;
         }
 
@@ -287,7 +285,7 @@ public class LoginActivity extends AppCompatActivity {
             Log.e(TAG, "checkKey() -> Key File doesn't exist, creating new one...");
 
             try {
-                String key = Encryption.encrypt(Encryption.FILE_PASSWORD_DEFAULT);
+                String key = Encryption.encrypt(Encryption.PASSWORD_4DIGIT_DEFAULT);
                 if (key != null) {
                     sharedPrefUtils.setKey4Password(key);
                 } else {

@@ -64,9 +64,14 @@ public class FileScanner {
                 } else {
                     Log.d(TAG, "scanRecursively() -> File: " + file.getAbsoluteFile());
                     if (file.getName().endsWith(Encryption.FILE_PREFIX)) {
-                        fileModels.add(new FileModel(FileUtils.removeEncryptionPreffix(file.getName()), file.getAbsolutePath()));
+                        fileModels.add(new FileModel(
+                                FileUtils.removeEncryptionPrefix(file.getName()),
+                                file.getAbsolutePath(),
+                                file.getParent(),
+                                FileUtils.isFileHidden(file)
+                        ));
                         Log.d(TAG, "scanRecursively() -> Adding new item: " +
-                                "\nName: " + FileUtils.removeEncryptionPreffix(file.getName()) +
+                                "\nName: " + FileUtils.removeEncryptionPrefix(file.getName()) +
                                 "\nPath: " + file.getPath());
                     }
                 }

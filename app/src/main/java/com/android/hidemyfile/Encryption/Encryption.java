@@ -6,6 +6,8 @@ import android.net.Uri;
 import android.util.Base64;
 import android.util.Log;
 
+import com.android.hidemyfile.Support.File.FileUtils;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -33,8 +35,7 @@ public class Encryption {
     private static final String TAG = "Encryption";
 
     public static final String FILE_PREFIX = ".encrypted";
-    public static final String FILE_PASSWORD_HASH_NAME = "p4d.key";
-    public static final String FILE_PASSWORD_DEFAULT = "0000";
+    public static final String PASSWORD_4DIGIT_DEFAULT = "0000";
 
     private static final String ENCRYPTION_AES = "AES";
     private static final String ENCRYPTION_SHA1 = "SHA-1";
@@ -184,6 +185,10 @@ public class Encryption {
             Log.e(TAG, "decrypt() -> Error while deleting original file");
         }
 
+        if (FileUtils.isFileHidden(newFile)) {
+            unHideFile(filePath);
+        }
+
         // Refresh Media cache of device
         scanMediaWithIntent(context, file);
         scanMediaWithIntent(context, newFile);
@@ -195,12 +200,24 @@ public class Encryption {
         File file = new File(filePath);
 
         String fileName = file.getName();
+        String filePathWithoutName = filePath.replace(fileName, "");
         String hiddenFileName = "." + fileName;
 
-        Log.d(TAG, "hideFile() -> Path: " + file.getPath());
-        Log.d(TAG, "hideFile() -> AbsolutePath: " + file.getAbsolutePath());
+        if (file.renameTo(new File(filePathWithoutName + hiddenFileName))) {
+            return file.getAbsolutePath();
+        } else {
+            return "";
+        }
+    }
 
-        if (file.renameTo(new File(filePath.replace(fileName, "") + hiddenFileName))) {
+    public static String unHideFile(String filePath) {
+        File file = new File(filePath);
+
+        String fileName = file.getName();
+        String filePathWithoutName = filePath.replace(fileName, "");
+        String unHiddenFileName = FileUtils.removeHidePrefix(fileName);
+
+        if (file.renameTo(new File(filePathWithoutName + unHiddenFileName))) {
             return file.getAbsolutePath();
         } else {
             return "";

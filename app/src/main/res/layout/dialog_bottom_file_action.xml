@@ -31,24 +31,25 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="horizontal"
-            android:paddingBottom="8dp"
-            android:paddingTop="8dp"
             android:weightSum="3">
 
             <LinearLayout
                 android:id="@+id/action_decrypt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
                 android:layout_weight="1"
                 android:background="@drawable/clickable_item_transparent"
                 android:clickable="true"
                 android:gravity="center"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:paddingTop="8dp">
 
                 <ImageView
                     android:layout_width="36dp"
                     android:layout_height="36dp"
-                    android:background="@drawable/clickable_item_transparent"
+                    android:background="@android:color/transparent"
                     android:scaleType="fitXY"
                     app:srcCompat="@drawable/ic_lock_open_primary_24dp" />
 
@@ -71,17 +72,20 @@
             <LinearLayout
                 android:id="@+id/action_properties"
                 android:layout_width="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@drawable/clickable_item_transparent"
                 android:clickable="true"
                 android:gravity="center"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:paddingTop="8dp">
 
                 <ImageView
                     android:layout_width="36dp"
                     android:layout_height="36dp"
-                    android:background="@drawable/clickable_item_transparent"
+                    android:background="@android:color/transparent"
                     android:scaleType="fitXY"
                     app:srcCompat="@drawable/ic_info_outline_primary_24dp" />
 
@@ -106,15 +110,18 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
                 android:background="@drawable/clickable_item_transparent"
                 android:clickable="true"
                 android:gravity="center"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:paddingTop="8dp">
 
                 <ImageView
                     android:layout_width="36dp"
                     android:layout_height="36dp"
-                    android:background="@drawable/clickable_item_transparent"
+                    android:background="@android:color/transparent"
                     android:scaleType="fitXY"
                     app:srcCompat="@drawable/ic_delete_primary_24dp" />
 
@@ -135,23 +142,25 @@
             android:gravity="center"
             android:orientation="horizontal"
             android:paddingBottom="8dp"
-            android:paddingTop="8dp"
             android:weightSum="3">
 
             <LinearLayout
                 android:id="@+id/action_hide"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
                 android:layout_weight="1"
                 android:background="@drawable/clickable_item_transparent"
                 android:clickable="true"
                 android:gravity="center"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:paddingTop="8dp">
 
                 <ImageView
                     android:layout_width="36dp"
                     android:layout_height="36dp"
-                    android:background="@drawable/clickable_item_transparent"
+                    android:background="@android:color/transparent"
                     android:scaleType="fitXY"
                     app:srcCompat="@drawable/ic_remove_red_eye_primary_24dp" />
 
@@ -176,15 +185,18 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
                 android:background="@drawable/clickable_item_transparent"
                 android:clickable="true"
                 android:gravity="center"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:paddingTop="8dp">
 
                 <ImageView
                     android:layout_width="36dp"
                     android:layout_height="36dp"
-                    android:background="@drawable/clickable_item_transparent"
+                    android:background="@android:color/transparent"
                     android:scaleType="fitXY"
                     app:srcCompat="@drawable/ic_info_outline_primary_24dp" />
 
@@ -207,17 +219,20 @@
             <LinearLayout
                 android:id="@+id/action_2"
                 android:layout_width="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@drawable/clickable_item_transparent"
                 android:clickable="true"
                 android:gravity="center"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:paddingTop="8dp">
 
                 <ImageView
                     android:layout_width="36dp"
                     android:layout_height="36dp"
-                    android:background="@drawable/clickable_item_transparent"
+                    android:background="@android:color/transparent"
                     android:scaleType="fitXY"
                     app:srcCompat="@drawable/ic_delete_primary_24dp" />
 

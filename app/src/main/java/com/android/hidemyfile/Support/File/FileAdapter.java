@@ -14,7 +14,6 @@ import android.widget.TextView;
 
 import com.android.hidemyfile.R;
 
-import java.io.File;
 import java.util.ArrayList;
 
 public class FileAdapter extends RecyclerView.Adapter<FileAdapter.BaseViewHolder> {
@@ -88,13 +87,11 @@ public class FileAdapter extends RecyclerView.Adapter<FileAdapter.BaseViewHolder
                                                 dataSet.get(position).getFilePath())
                                 ))));
 
-        filePath.setText(fileModel.getFilePath());
-        fileName.setSelected(true);
-        filePath.setSelected(true);
+        filePath.setText(fileModel.getParentPath());
 
-        if (FileUtils.isFileHidden(new File(fileModel.getFilePath()))) {
+        if (fileModel.isHidden()) {
             hideIndicator.setVisibility(View.VISIBLE);
-            fileName.setText(FileUtils.removeHidePreffix(fileModel.getFileName()));
+            fileName.setText(FileUtils.removeHidePrefix(fileModel.getFileName()));
         } else {
             hideIndicator.setVisibility(View.INVISIBLE);
             fileName.setText(fileModel.getFileName());

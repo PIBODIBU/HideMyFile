@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white_dark"
@@ -13,6 +14,7 @@
         android:id="@id/app_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:elevation="0dp"
         android:theme="@style/AppTheme.AppBarOverlay">
 
         <android.support.v7.widget.Toolbar
@@ -21,10 +23,14 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="@color/colorPrimary"
+            android:elevation="0dp"
             android:minHeight="?attr/actionBarSize" />
-
     </android.support.design.widget.AppBarLayout>
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2.3dp"
+        android:background="@drawable/shadow_down" />
 
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
