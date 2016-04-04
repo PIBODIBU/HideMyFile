@@ -53,8 +53,8 @@
                 android:textSize="16sp" />
 
             <include
-                android:id="@+id/setting_general_show_hidden"
-                layout="@layout/setting_general_show_hidden" />
+                android:id="@+id/setting_general_scan_hidden"
+                layout="@layout/setting_general_scan_hidden" />
 
             <include
                 android:id="@+id/setting_general_hide_after"

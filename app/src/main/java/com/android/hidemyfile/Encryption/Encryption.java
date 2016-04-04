@@ -191,6 +191,22 @@ public class Encryption {
         return filePath;
     }
 
+    public static String hideFile(String filePath) {
+        File file = new File(filePath);
+
+        String fileName = file.getName();
+        String hiddenFileName = "." + fileName;
+
+        Log.d(TAG, "hideFile() -> Path: " + file.getPath());
+        Log.d(TAG, "hideFile() -> AbsolutePath: " + file.getAbsolutePath());
+
+        if (file.renameTo(new File(filePath.replace(fileName, "") + hiddenFileName))) {
+            return file.getAbsolutePath();
+        } else {
+            return "";
+        }
+    }
+
     /**
      * Method for getting salt for encryption
      *

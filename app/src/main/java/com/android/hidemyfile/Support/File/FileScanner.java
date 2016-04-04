@@ -15,7 +15,7 @@ public class FileScanner {
     private OnScanPrepareListener onScanPrepareListener;
     private OnScanCompleteListener onScanCompleteListener;
 
-    public void scan(final File root, final ArrayList<FileModel> fileModels) {
+    public void scan(final File root, final ArrayList<FileModel> fileModels, final boolean scanHiddenFiles) {
         new AsyncTask<Void, Void, Void>() {
             @Override
             protected void onPreExecute() {
@@ -28,7 +28,7 @@ public class FileScanner {
             protected Void doInBackground(Void... params) {
                 Log.d(TAG, "scan() -> doInBackground()");
 
-                scanRecursively(root, fileModels);
+                scanRecursively(root, fileModels, scanHiddenFiles);
 
                 return null;
             }
@@ -44,26 +44,30 @@ public class FileScanner {
         }.execute();
     }
 
-    private void scanRecursively(File root, ArrayList<FileModel> fileModels) {
+    private void scanRecursively(File root, ArrayList<FileModel> fileModels, boolean scanHiddenFiles) {
         Log.d(TAG, "--------------------");
 
         File[] list = root.listFiles();
 
         if (list != null) {
             for (File file : list) {
-                if (!file.getName().startsWith(".")) {
-                    if (file.isDirectory()) {
-                        Log.d(TAG, "scanRecursively() -> Dir: " + file.getAbsoluteFile());
-                        scanRecursively(file, fileModels);
-                    } else {
-                        Log.d(TAG, "scanRecursively() -> File: " + file.getAbsoluteFile());
-
-                        if (file.getName().endsWith(Encryption.FILE_PREFIX)) {
-                            fileModels.add(new FileModel(FileUtils.removeEncryptionPreffix(file.getName()), file.getAbsolutePath()));
-                            Log.d(TAG, "scanRecursively() -> Adding new item: " +
-                                    "\nName: " + FileUtils.removeEncryptionPreffix(file.getName()) +
-                                    "\nPath: " + file.getPath());
+                if (file.isDirectory()) {
+                    if (file.getName().startsWith(".")) {
+                        if (scanHiddenFiles) {
+                            Log.d(TAG, "scanRecursively() -> Dir: " + file.getAbsoluteFile());
+                            scanRecursively(file, fileModels, scanHiddenFiles);
                         }
+                    } else {
+                        Log.d(TAG, "scanRecursively() -> Dir: " + file.getAbsoluteFile());
+                        scanRecursively(file, fileModels, scanHiddenFiles);
+                    }
+                } else {
+                    Log.d(TAG, "scanRecursively() -> File: " + file.getAbsoluteFile());
+                    if (file.getName().endsWith(Encryption.FILE_PREFIX)) {
+                        fileModels.add(new FileModel(FileUtils.removeEncryptionPreffix(file.getName()), file.getAbsolutePath()));
+                        Log.d(TAG, "scanRecursively() -> Adding new item: " +
+                                "\nName: " + FileUtils.removeEncryptionPreffix(file.getName()) +
+                                "\nPath: " + file.getPath());
                     }
                 }
             }

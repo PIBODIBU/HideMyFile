@@ -8,6 +8,7 @@ import android.util.Log;
 import com.android.hidemyfile.Encryption.Encryption;
 import com.android.hidemyfile.R;
 
+import java.io.File;
 import java.net.URISyntaxException;
 
 public class FileUtils {
@@ -44,6 +45,14 @@ public class FileUtils {
         }
 
         return null;
+    }
+
+    public static boolean isFileHidden(File file) {
+        return file.getName().startsWith(".");
+    }
+
+    public static String removeHidePreffix(String fileName) {
+        return fileName.substring(1, fileName.length());
     }
 
     public static String removeEncryptionPreffix(String path) {

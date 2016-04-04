@@ -10,7 +10,6 @@
 
     <ImageView
         android:id="@+id/image_icon"
-        app:srcCompat="@drawable/ic_camera_white_24dp"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_marginBottom="8dp"
@@ -18,7 +17,8 @@
         android:layout_marginRight="16dp"
         android:layout_marginTop="8dp"
         android:background="@drawable/circle_primary"
-        android:padding="16dp" />
+        android:padding="16dp"
+        app:srcCompat="@drawable/ic_camera_white_24dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -49,8 +49,19 @@
             android:text="/storage/sdcard0/test/IMG_453543_0345.jpg"
             android:textColor="@color/colorTextSecondary"
             android:textSize="14sp" />
-
     </LinearLayout>
+
+    <ImageView
+        android:id="@+id/hide_indicator"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_margin="8dp"
+        android:background="@drawable/clickable_item_transparent"
+        android:scaleType="fitXY"
+        android:visibility="invisible"
+        app:srcCompat="@drawable/ic_remove_red_eye_primary_24dp" />
 
     <View
         android:layout_width="match_parent"

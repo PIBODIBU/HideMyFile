@@ -157,7 +157,7 @@
                 android:onClick="onClick"
                 android:paddingBottom="@dimen/keyboard_button_padding_vertical"
                 android:paddingLeft="@dimen/keyboard_button_padding_horizontal"
-                android:paddingRight="24dp"
+                android:paddingRight="36dp"
                 android:paddingTop="@dimen/keyboard_button_padding_vertical">
 
                 <TextView
@@ -440,7 +440,7 @@
                 android:onClick="onClick"
                 android:paddingBottom="@dimen/keyboard_button_padding_vertical"
                 android:paddingLeft="@dimen/keyboard_button_padding_horizontal"
-                android:paddingRight="24dp"
+                android:paddingRight="36dp"
                 android:paddingTop="@dimen/keyboard_button_padding_vertical">
 
                 <TextView

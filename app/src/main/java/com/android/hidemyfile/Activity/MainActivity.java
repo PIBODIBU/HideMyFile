@@ -29,11 +29,13 @@ import com.android.hidemyfile.AsyncTask.EncryptionTask;
 import com.android.hidemyfile.Dialog.DialogFileAction;
 import com.android.hidemyfile.Dialog.DialogFileDecrypt;
 import com.android.hidemyfile.Dialog.DialogFileEncrypt;
+import com.android.hidemyfile.Encryption.Encryption;
 import com.android.hidemyfile.R;
 import com.android.hidemyfile.Support.File.FileAdapter;
 import com.android.hidemyfile.Support.File.FileModel;
 import com.android.hidemyfile.Support.File.FileScanner;
 import com.android.hidemyfile.Support.File.FileUtils;
+import com.android.hidemyfile.Support.SharedPreferencesUtils.SharedPreferencesUtils;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -44,6 +46,8 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainAcivity";
     private static final int FILE_SELECT_CODE = 0;
+
+    private SharedPreferencesUtils sharedPreferencesUtils;
 
     /**
      * Main Layout Views
@@ -78,6 +82,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        sharedPreferencesUtils = new SharedPreferencesUtils(this);
 
         setUpView();
         setUpRecyclerView();
@@ -164,7 +170,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         dataSet.clear();
-        fileScanner.scan(new File(rootPath), dataSet);
+        fileScanner.scan(new File(rootPath), dataSet, sharedPreferencesUtils.getScanHidden());
     }
 
     private void refreshLayout() {
@@ -281,6 +287,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onSuccess(String encryptedFilePath) {
                 showInfo("File encrypted");
+
+                if (sharedPreferencesUtils.getHideAfterScan()) {
+                    Encryption.hideFile(encryptedFilePath);
+                }
             }
 
             @Override

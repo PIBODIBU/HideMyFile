@@ -2,6 +2,7 @@ package com.android.hidemyfile.Support.File;
 
 import android.content.Context;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.graphics.drawable.DrawableCompat;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,8 +13,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.android.hidemyfile.R;
-import com.bumptech.glide.Glide;
 
+import java.io.File;
 import java.util.ArrayList;
 
 public class FileAdapter extends RecyclerView.Adapter<FileAdapter.BaseViewHolder> {
@@ -35,6 +36,7 @@ public class FileAdapter extends RecyclerView.Adapter<FileAdapter.BaseViewHolder
         ImageView fileImage;
         TextView fileName;
         TextView filePath;
+        ImageView hideIndicator;
 
         public BaseViewHolder(View itemView) {
             super(itemView);
@@ -43,6 +45,7 @@ public class FileAdapter extends RecyclerView.Adapter<FileAdapter.BaseViewHolder
             this.fileImage = (ImageView) itemView.findViewById(R.id.image_icon);
             this.fileName = (TextView) itemView.findViewById(R.id.text_name);
             this.filePath = (TextView) itemView.findViewById(R.id.text_path);
+            this.hideIndicator = (ImageView) itemView.findViewById(R.id.hide_indicator);
         }
     }
 
@@ -61,11 +64,13 @@ public class FileAdapter extends RecyclerView.Adapter<FileAdapter.BaseViewHolder
         ImageView fileImage = holder.fileImage;
         TextView fileName = holder.fileName;
         TextView filePath = holder.filePath;
+        ImageView hideIndicator = holder.hideIndicator;
 
         Log.d(TAG, "onBindViewHolder() -> Adding new item: " +
                 "\nName: " + fileModel.getFileName() +
                 "\nPath: " + fileModel.getFilePath());
 
+        // Use it for non-vector images
         /*Glide
                 .with(context)
                 .load(FileUtils.getIconFromType(
@@ -74,13 +79,26 @@ public class FileAdapter extends RecyclerView.Adapter<FileAdapter.BaseViewHolder
                 .crossFade()
                 .into(fileImage);*/
 
-        fileImage.setImageDrawable(ContextCompat.getDrawable(context, FileUtils.getIconFromType(
-                FileUtils.getEncryptedFileType(dataSet.get(position).getFilePath()))));
+        // Use it for vector images
+        fileImage.setImageDrawable(
+                DrawableCompat.wrap(
+                        ContextCompat.getDrawable(
+                                context, FileUtils.getIconFromType(
+                                        FileUtils.getEncryptedFileType(
+                                                dataSet.get(position).getFilePath())
+                                ))));
 
-        fileName.setText(fileModel.getFileName());
         filePath.setText(fileModel.getFilePath());
         fileName.setSelected(true);
         filePath.setSelected(true);
+
+        if (FileUtils.isFileHidden(new File(fileModel.getFilePath()))) {
+            hideIndicator.setVisibility(View.VISIBLE);
+            fileName.setText(FileUtils.removeHidePreffix(fileModel.getFileName()));
+        } else {
+            hideIndicator.setVisibility(View.INVISIBLE);
+            fileName.setText(fileModel.getFileName());
+        }
 
         rootView.setOnClickListener(new View.OnClickListener() {
             @Override

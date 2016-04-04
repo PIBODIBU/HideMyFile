@@ -13,6 +13,8 @@ public class SharedPreferencesUtils {
     private SharedPreferences sharedPreferences;
 
     private static final String KEY_4_PASSWORD = "DO_NOT_TOUCH_THIS";
+    private static final String KEY_SCAN_HIDDEN = "KEY_SCAN_HIDDEN";
+    private static final String KEY_HIDE_AFTER_SCAN = "KEY_HIDE_AFTER_SCAN";
 
     public SharedPreferencesUtils(Context context) {
         this.context = context;
@@ -26,5 +28,23 @@ public class SharedPreferencesUtils {
     @NonNull
     public String getKey4Password() {
         return sharedPreferences.getString(KEY_4_PASSWORD, "");
+    }
+
+    public void setScanHidden(@NonNull boolean scanHidden) {
+        sharedPreferences.edit().putBoolean(KEY_SCAN_HIDDEN, scanHidden).apply();
+    }
+
+    @NonNull
+    public boolean getScanHidden() {
+        return sharedPreferences.getBoolean(KEY_SCAN_HIDDEN, false);
+    }
+
+    public void setHideAfterScan(@NonNull boolean hideAfterScan) {
+        sharedPreferences.edit().putBoolean(KEY_HIDE_AFTER_SCAN, hideAfterScan).apply();
+    }
+
+    @NonNull
+    public boolean getHideAfterScan() {
+        return sharedPreferences.getBoolean(KEY_HIDE_AFTER_SCAN, false);
     }
 }
