@@ -1,6 +1,7 @@
 package com.android.hidemyfile.Support.File;
 
 import android.content.Context;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -65,13 +66,16 @@ public class FileAdapter extends RecyclerView.Adapter<FileAdapter.BaseViewHolder
                 "\nName: " + fileModel.getFileName() +
                 "\nPath: " + fileModel.getFilePath());
 
-        Glide
+        /*Glide
                 .with(context)
                 .load(FileUtils.getIconFromType(
                         FileUtils.getEncryptedFileType(dataSet.get(position).getFilePath())
                 ))
                 .crossFade()
-                .into(fileImage);
+                .into(fileImage);*/
+
+        fileImage.setImageDrawable(ContextCompat.getDrawable(context, FileUtils.getIconFromType(
+                FileUtils.getEncryptedFileType(dataSet.get(position).getFilePath()))));
 
         fileName.setText(fileModel.getFileName());
         filePath.setText(fileModel.getFilePath());
