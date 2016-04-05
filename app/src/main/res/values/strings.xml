@@ -46,6 +46,14 @@
     <string name="dialog_file_delete_unsuccessful">Error while deleting file</string>
 
 
+    <string name="dialog_file_action_title">Choose action:</string>
+    <string name="dialog_file_action_decrypt">Decrypt</string>
+    <string name="dialog_file_action_properties">Properties</string>
+    <string name="dialog_file_action_delete">Delete</string>
+    <string name="dialog_file_action_hide">Hide</string>
+    <string name="dialog_file_action_show">Show</string>
+
+
     <string name="dialog_password_change_hint_old">Old password</string>
     <string name="dialog_password_change_hint_new">New password</string>
     <string name="dialog_password_change_hint_repeat">Repeat new password</string>
@@ -54,6 +62,7 @@
     <string name="dialog_password_change_negative">Cancel</string>
     <string name="dialog_password_change_error_empty">Type password</string>
     <string name="dialog_password_change_error_length_short">Too short password</string>
+    <string name="dialog_password_change_error_bad_pwd">Bad password</string>
     <string name="dialog_password_change_error_length_long">Too long password</string>
     <string name="dialog_password_change_error_match">Passwords not match</string>
     <string name="dialog_password_change_success">Password successfully changed</string>

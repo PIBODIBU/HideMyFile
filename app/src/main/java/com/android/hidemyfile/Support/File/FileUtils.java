@@ -64,7 +64,7 @@ public class FileUtils {
     }
 
     public static String removeEncryptionPrefix(String path) {
-        return path.replace(Encryption.FILE_PREFIX, "");
+        return path.replace(Encryption.FILE_ENCRYPTION_PREFIX, "");
     }
 
     public static int getFileType(String pathToFile) {

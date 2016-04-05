@@ -15,11 +15,13 @@ import android.widget.Button;
 
 import com.android.hidemyfile.Encryption.Encryption;
 import com.android.hidemyfile.R;
+import com.android.hidemyfile.Support.SharedPreferencesUtils.SharedPreferencesUtils;
 
 public class DialogPasswordChange extends DialogFragment {
 
     private static final String TAG = "DialogPasswordChange";
 
+    private SharedPreferencesUtils sharedPreferencesUtils;
     private InputMethodManager inputMethodManager;
     private AlertDialog alertDialog;
     private PasswordChangeCallbacks passwordChangeCallbacks;
@@ -36,6 +38,7 @@ public class DialogPasswordChange extends DialogFragment {
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         inputMethodManager = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+        sharedPreferencesUtils = new SharedPreferencesUtils(getActivity());
 
         setUpLayout();
 
@@ -159,6 +162,18 @@ public class DialogPasswordChange extends DialogFragment {
                 return false;
             } else {
                 TILPasswordRepeat.setError("");
+            }
+
+            try {
+                if (!Encryption.encrypt(pwdOld).equals(sharedPreferencesUtils.getKey4Password())) {
+                    TILPasswordOld.setError(getString(R.string.dialog_password_change_error_bad_pwd));
+                    return false;
+                } else {
+                    TILPasswordOld.setError("");
+                }
+            } catch (Exception ex) {
+                Log.e(TAG, "isInputValid() -> ", ex);
+                return false;
             }
 
             return true;

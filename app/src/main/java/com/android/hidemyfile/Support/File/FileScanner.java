@@ -63,7 +63,7 @@ public class FileScanner {
                     }
                 } else {
                     Log.d(TAG, "scanRecursively() -> File: " + file.getAbsoluteFile());
-                    if (file.getName().endsWith(Encryption.FILE_PREFIX)) {
+                    if (file.getName().endsWith(Encryption.FILE_ENCRYPTION_PREFIX)) {
                         fileModels.add(new FileModel(
                                 FileUtils.removeEncryptionPrefix(file.getName()),
                                 file.getAbsolutePath(),

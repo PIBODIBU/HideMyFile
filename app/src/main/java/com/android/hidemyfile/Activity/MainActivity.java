@@ -116,37 +116,59 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void itemClicked(final int position) throws IndexOutOfBoundsException {
                 Log.d(TAG, "itemClicked() -> Position: " + position);
-
-                DialogFileAction dialogFileAction = new DialogFileAction();
-                dialogFileAction.setDialogCallbacks(new DialogFileAction.DialogCallBacks() {
-                    @Override
-                    public void onDecrypt(Dialog dialog) {
-                        dialog.dismiss();
-                        try {
-                            showDialogFileDecrypt(dataSet.get(position).getFilePath());
-                        } catch (IndexOutOfBoundsException ex) {
-                            Log.e(TAG, "itemClicked() -> ", ex);
-                        }
-                    }
-
-                    @Override
-                    public void onProperties(Dialog dialog) {
-                        dialog.dismiss();
-                        showInfo("Under development");
-                    }
-
-                    @Override
-                    public void onDelete(Dialog dialog) {
-                        dialog.dismiss();
-                        showDialogFileDelete(position);
-                    }
-                });
-
-                dialogFileAction.show(getSupportFragmentManager(), "DialogFileAction");
+                showDialogFileChooseAction(position);
             }
         });
 
         refreshAdapterItems();
+    }
+
+    private void showDialogFileChooseAction(final int position) {
+        DialogFileAction dialogFileAction = new DialogFileAction();
+        dialogFileAction.setFileModel(dataSet.get(position));
+        dialogFileAction.setDialogCallbacks(new DialogFileAction.DialogCallBacks() {
+            @Override
+            public void onDecrypt(Dialog dialog) {
+                dialog.dismiss();
+                try {
+                    showDialogFileDecrypt(dataSet.get(position).getFilePath());
+                } catch (IndexOutOfBoundsException ex) {
+                    Log.e(TAG, "itemClicked() -> ", ex);
+                }
+            }
+
+            @Override
+            public void onProperties(Dialog dialog) {
+                dialog.dismiss();
+                showInfo("Under development");
+            }
+
+            @Override
+            public void onDelete(Dialog dialog) {
+                dialog.dismiss();
+                showDialogFileDelete(position);
+            }
+
+            @Override
+            public void onHide(Dialog dialog) {
+                dialog.dismiss();
+
+                FileModel fileModel = dataSet.get(position);
+                Encryption.hideFile(fileModel.getFilePath());
+                refreshAdapterItems();
+            }
+
+            @Override
+            public void onUnHide(Dialog dialog) {
+                dialog.dismiss();
+
+                FileModel fileModel = dataSet.get(position);
+                Encryption.unHideFile(fileModel.getFilePath());
+                refreshAdapterItems();
+            }
+        });
+
+        dialogFileAction.show(getSupportFragmentManager(), "DialogFileAction");
     }
 
     private void showDialogFileDelete(final int position) {

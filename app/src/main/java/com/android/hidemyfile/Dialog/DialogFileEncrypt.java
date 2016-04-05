@@ -75,8 +75,6 @@ public class DialogFileEncrypt extends DialogFragment {
             }
         });
 
-        openKeyboard();
-
         alertDialog = new AlertDialog.Builder(getActivity())
                 .setTitle(getActivity().getString(R.string.dialog_encryption_title))
                 .setView(rootView)
@@ -110,15 +108,6 @@ public class DialogFileEncrypt extends DialogFragment {
         } else {
             Log.e(TAG, "checkInput() -> TILPassword.getEditText() is null");
             return false;
-        }
-    }
-
-    private void openKeyboard() {
-        View view = getActivity().getCurrentFocus();
-        if (view != null) {
-            inputMethodManager.showSoftInput(view, InputMethodManager.SHOW_FORCED);
-        } else {
-            Log.e(TAG, "openKeyboard() -> View is null");
         }
     }
 

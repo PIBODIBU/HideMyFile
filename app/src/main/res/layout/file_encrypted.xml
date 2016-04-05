@@ -65,7 +65,7 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="1dp"
+        android:layout_height="2px"
         android:layout_below="@id/image_icon"
         android:layout_toEndOf="@id/image_icon"
         android:layout_toRightOf="@id/image_icon"

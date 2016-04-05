@@ -29,7 +29,7 @@ public class SharedPreferencesUtils {
 
     @NonNull
     public String getKey4Password() {
-        return sharedPreferences.getString(KEY_4_PASSWORD, Encryption.encrypt(Encryption.PASSWORD_4DIGIT_DEFAULT));
+        return sharedPreferences.getString(KEY_4_PASSWORD, "");
     }
 
     public void setScanHidden(@NonNull boolean scanHidden) {

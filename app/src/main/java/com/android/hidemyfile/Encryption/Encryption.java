@@ -16,14 +16,12 @@ import java.io.UnsupportedEncodingException;
 import java.security.InvalidKeyException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.security.spec.AlgorithmParameterSpec;
 import java.util.Arrays;
 
 import javax.crypto.Cipher;
 import javax.crypto.CipherInputStream;
 import javax.crypto.CipherOutputStream;
 import javax.crypto.NoSuchPaddingException;
-import javax.crypto.SecretKey;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
@@ -34,7 +32,7 @@ public class Encryption {
 
     private static final String TAG = "Encryption";
 
-    public static final String FILE_PREFIX = ".encrypted";
+    public static final String FILE_ENCRYPTION_PREFIX = ".encrypted";
     public static final String PASSWORD_4DIGIT_DEFAULT = "0000";
 
     private static final String ENCRYPTION_AES = "AES";
@@ -62,7 +60,7 @@ public class Encryption {
      * @throws InvalidKeyException
      */
     public static String encrypt(Context context, String secretKey, File file) throws IOException, NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException {
-        String filePath = file.getPath() + FILE_PREFIX;
+        String filePath = file.getPath() + FILE_ENCRYPTION_PREFIX;
 
         // Create new output File
         File newFile = new File(filePath);
@@ -146,7 +144,7 @@ public class Encryption {
      * @throws InvalidKeyException
      */
     public static String decrypt(Context context, String secretKey, File file) throws IOException, NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException {
-        String filePath = file.getPath().replace(FILE_PREFIX, "");
+        String filePath = file.getPath().replace(FILE_ENCRYPTION_PREFIX, "");
 
         // Create new output File
         File newFile = new File(filePath);
@@ -196,6 +194,17 @@ public class Encryption {
         return filePath;
     }
 
+    /**
+     * Method for hiding file
+     * <p/>
+     * <p>
+     * Method adds prefix "." before file name.
+     * </p>
+     *
+     * @param filePath - Path of file for hiding
+     * @return - path of hidden file
+     * - Empty {@link String} if hiding was unsuccessful
+     */
     public static String hideFile(String filePath) {
         File file = new File(filePath);
 
@@ -210,6 +219,18 @@ public class Encryption {
         }
     }
 
+    /**
+     * Method for making hidden file visible
+     * <p/>
+     * <p>
+     * Method removes prefix "." before file name.
+     * {@link Encryption#hideFile(String)}
+     * </p>
+     *
+     * @param filePath - Path of file for making it visible
+     * @return - new path of file
+     * - Empty {@link String} if process was unsuccessful
+     */
     public static String unHideFile(String filePath) {
         File file = new File(filePath);
 
@@ -232,6 +253,8 @@ public class Encryption {
     private static String getSalt() {
         return ENCRYPTION_SALT;
     }
+
+    // TODO change method for user's key encrypting (Getting first 128 bits is dangerous)
 
     /**
      * Method performs merging user's secret key with salt and encryption new String with SHA-1 algorithm
