@@ -4,10 +4,12 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.support.design.widget.BottomSheetDialogFragment;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.android.hidemyfile.R;
 import com.android.hidemyfile.Support.File.FileModel;
+import com.android.hidemyfile.Support.Graphic.VectorDrawableSupport;
 
 public class DialogFileAction extends BottomSheetDialogFragment {
 
@@ -29,12 +31,15 @@ public class DialogFileAction extends BottomSheetDialogFragment {
         View VActionDelete = rootView.findViewById(R.id.action_delete);
 
         View VActionHide = rootView.findViewById(R.id.action_hide);
+        ImageView IVActionHide = (ImageView) rootView.findViewById(R.id.icon_hide);
         final TextView TVActionHide = (TextView) rootView.findViewById(R.id.text_hide);
 
         if (getFileModel().isHidden()) {
             TVActionHide.setText(getString(R.string.dialog_file_action_show));
+            IVActionHide.setImageDrawable(VectorDrawableSupport.getDrawableFromVector(getActivity(), R.drawable.ic_visibility_primary_24dp));
         } else {
             TVActionHide.setText(getString(R.string.dialog_file_action_hide));
+            IVActionHide.setImageDrawable(VectorDrawableSupport.getDrawableFromVector(getActivity(), R.drawable.ic_visibility_off_primary_24dp));
         }
 
         VActionDecrypt.setOnClickListener(new View.OnClickListener() {

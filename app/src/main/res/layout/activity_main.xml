@@ -97,9 +97,12 @@
                 android:id="@+id/text_message_empty"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:padding="16dp"
-                android:text="No encrypted files"
+                android:gravity="center"
+                android:paddingBottom="16dp"
+                android:paddingLeft="24dp"
+                android:paddingRight="24dp"
+                android:paddingTop="16dp"
+                android:text="@string/activity_main_warning_no_file"
                 android:textColor="@color/colorTextPrimary"
                 android:textSize="18sp" />
         </LinearLayout>

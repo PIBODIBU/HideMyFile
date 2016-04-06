@@ -61,7 +61,7 @@
         android:background="@drawable/clickable_item_transparent"
         android:scaleType="fitXY"
         android:visibility="invisible"
-        app:srcCompat="@drawable/ic_remove_red_eye_primary_24dp" />
+        app:srcCompat="@drawable/ic_visibility_off_primary_24dp" />
 
     <View
         android:layout_width="match_parent"

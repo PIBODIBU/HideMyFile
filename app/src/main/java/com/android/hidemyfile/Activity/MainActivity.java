@@ -30,6 +30,7 @@ import com.android.hidemyfile.Dialog.DialogFileAction;
 import com.android.hidemyfile.Dialog.DialogFileDecrypt;
 import com.android.hidemyfile.Dialog.DialogFileDelete;
 import com.android.hidemyfile.Dialog.DialogFileEncrypt;
+import com.android.hidemyfile.Dialog.DialogFileProperties;
 import com.android.hidemyfile.Encryption.Encryption;
 import com.android.hidemyfile.R;
 import com.android.hidemyfile.Support.File.FileAdapter;
@@ -140,7 +141,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onProperties(Dialog dialog) {
                 dialog.dismiss();
-                showInfo("Under development");
+                showDialogFileProperties(position);
             }
 
             @Override
@@ -169,6 +170,12 @@ public class MainActivity extends AppCompatActivity {
         });
 
         dialogFileAction.show(getSupportFragmentManager(), "DialogFileAction");
+    }
+
+    private void showDialogFileProperties(int position) {
+        DialogFileProperties dialogFileProperties = new DialogFileProperties();
+        dialogFileProperties.setFileModel(dataSet.get(position));
+        dialogFileProperties.show(getSupportFragmentManager(), "DialogFileProperties");
     }
 
     private void showDialogFileDelete(final int position) {

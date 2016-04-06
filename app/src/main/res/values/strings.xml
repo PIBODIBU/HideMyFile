@@ -4,6 +4,9 @@
     <string name="activity_login_title">Login</string>
 
 
+    <string name="activity_main_warning_no_file">No encrypted files was found. Click button at right bottom corner to encrypt something!</string>
+
+
     <string name="login_hello">Please, enter password:</string>
     <string name="login_button_login">Login</string>
     <string name="login_button_help">Need help?</string>
@@ -36,6 +39,10 @@
     <string name="setting_security_password_change_subtitle">Change 4-digit password</string>
     <string name="setting_security_read_more_title">Read more</string>
     <string name="setting_security_read_more_subtitle">Read more about basic security rules of application</string>
+
+
+    <string name="dialog_file_properties_title">File properties</string>
+    <string name="dialog_file_properties_positive">OK</string>
 
 
     <string name="dialog_file_delete_title">Are you sure?</string>
