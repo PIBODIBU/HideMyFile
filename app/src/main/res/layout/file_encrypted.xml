@@ -6,14 +6,14 @@
     android:layout_height="wrap_content"
     android:background="@drawable/clickable_item_transparent"
     android:clickable="true"
-    android:orientation="horizontal"
-    android:paddingTop="16dp">
+    android:orientation="horizontal">
 
     <RelativeLayout
         android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="16dp">
+        android:paddingBottom="16dp"
+        android:paddingTop="16dp">
 
         <ImageView
             android:id="@+id/image_icon"
