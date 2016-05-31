@@ -273,10 +273,10 @@ public class FileUtils {
     public static int getIconFromType(int fileType) {
         switch (fileType) {
             case TYPE_IMAGE: {
-                return R.drawable.ic_camera_white_24dp;
+                return R.drawable.ic_camera_primary_24dp;
             }
             case TYPE_GIF: {
-                return R.drawable.ic_gif_white_24dp;
+                return R.drawable.ic_gif_primary_24dp;
             }
             case TYPE_SOUND: {
                 return R.drawable.ic_music_note_white_24dp;
@@ -285,22 +285,22 @@ public class FileUtils {
                 return R.drawable.ic_ondemand_video_white_24dp;
             }
             case TYPE_APK: {
-                return R.drawable.ic_android_white_24dp;
+                return R.drawable.ic_android_primary_24dp;
             }
             case TYPE_TEXT: {
-                return R.drawable.ic_receipt_white_24dp;
+                return R.drawable.ic_receipt_primary_24dp;
             }
             case TYPE_DOC: {
-                return R.drawable.ic_receipt_white_24dp;
+                return R.drawable.ic_receipt_primary_24dp;
             }
             case TYPE_PDF: {
                 return R.drawable.ic_picture_as_pdf_white_24dp;
             }
             case TYPE_UNKNOWN: {
-                return R.drawable.ic_help_outline_white_24dp;
+                return R.drawable.ic_help_outline_primary_24dp;
             }
             default: {
-                return R.drawable.ic_help_outline_white_24dp;
+                return R.drawable.ic_help_outline_primary_24dp;
             }
         }
     }

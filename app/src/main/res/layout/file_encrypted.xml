@@ -6,69 +6,76 @@
     android:layout_height="wrap_content"
     android:background="@drawable/clickable_item_transparent"
     android:clickable="true"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    android:paddingTop="16dp">
 
-    <ImageView
-        android:id="@+id/image_icon"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginTop="8dp"
-        android:background="@drawable/circle_primary"
-        android:padding="16dp"
-        app:srcCompat="@drawable/ic_camera_white_24dp" />
-
-    <LinearLayout
+    <RelativeLayout
+        android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_toEndOf="@+id/image_icon"
-        android:layout_toRightOf="@+id/image_icon"
-        android:gravity="center_vertical"
-        android:orientation="vertical">
+        android:paddingBottom="16dp">
 
-        <TextView
-            android:id="@+id/text_name"
+        <ImageView
+            android:id="@+id/image_icon"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_centerVertical="true"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="8dp"
+            app:srcCompat="@drawable/ic_camera_primary_24dp" />
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:singleLine="true"
-            android:text="IMG_453543_0345.jpg"
-            android:textColor="@color/colorTextPrimary"
-            android:textSize="18sp" />
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_toEndOf="@+id/image_icon"
+            android:layout_toRightOf="@+id/image_icon"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/text_path"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingTop="4dp"
-            android:singleLine="true"
-            android:text="/storage/sdcard0/test/IMG_453543_0345.jpg"
-            android:textColor="@color/colorTextSecondary"
-            android:textSize="14sp" />
-    </LinearLayout>
+            <TextView
+                android:id="@+id/text_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:text="IMG_453543_0345.jpg"
+                android:textColor="@color/colorTextPrimary"
+                android:textSize="18sp" />
 
-    <ImageView
-        android:id="@+id/hide_indicator"
-        android:layout_width="16dp"
-        android:layout_height="16dp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_margin="8dp"
-        android:background="@drawable/clickable_item_transparent"
-        android:scaleType="fitXY"
-        android:visibility="invisible"
-        app:srcCompat="@drawable/ic_visibility_off_primary_24dp" />
+            <TextView
+                android:id="@+id/text_path"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="4dp"
+                android:singleLine="true"
+                android:text="/storage/sdcard0/test/IMG_453543_0345.jpg"
+                android:textColor="@color/colorTextSecondary"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/hide_indicator"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_margin="8dp"
+            android:background="@drawable/clickable_item_transparent"
+            android:scaleType="fitXY"
+            android:visibility="invisible"
+            app:srcCompat="@drawable/ic_visibility_off_primary_24dp" />
+    </RelativeLayout>
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="2px"
-        android:layout_below="@id/image_icon"
-        android:layout_toEndOf="@id/image_icon"
-        android:layout_toRightOf="@id/image_icon"
+        android:layout_height="1px"
+        android:layout_below="@id/container"
+        android:layout_marginLeft="88dp"
+        android:layout_marginStart="88dp"
         android:background="@color/colorDivider" />
 
 </RelativeLayout>
