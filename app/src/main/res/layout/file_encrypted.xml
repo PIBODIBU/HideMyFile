@@ -24,6 +24,7 @@
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:layout_marginTop="8dp"
+            android:padding="8dp"
             app:srcCompat="@drawable/ic_camera_primary_24dp" />
 
         <LinearLayout
