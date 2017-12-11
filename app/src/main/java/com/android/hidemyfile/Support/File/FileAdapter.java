@@ -20,7 +20,6 @@ public class FileAdapter extends RecyclerView.Adapter<FileAdapter.BaseViewHolder
 
     private static final String TAG = "FileAdapter";
 
-
     private Context context;
     private ArrayList<FileModel> dataSet;
     private RecyclerViewCallbacks recyclerViewCallbacks;
@@ -57,26 +56,13 @@ public class FileAdapter extends RecyclerView.Adapter<FileAdapter.BaseViewHolder
 
     @Override
     public void onBindViewHolder(final BaseViewHolder holder, int position) {
-        FileModel fileModel = dataSet.get(position);
+        final FileModel fileModel = dataSet.get(position);
 
         RelativeLayout rootView = holder.rootView;
         ImageView fileImage = holder.fileImage;
         TextView fileName = holder.fileName;
         TextView filePath = holder.filePath;
         ImageView hideIndicator = holder.hideIndicator;
-
-        Log.d(TAG, "onBindViewHolder() -> Adding new item: " +
-                "\nName: " + fileModel.getFileName() +
-                "\nPath: " + fileModel.getFilePath());
-
-        // Use it for non-vector images
-        /*Glide
-                .with(context)
-                .load(FileUtils.getIconFromType(
-                        FileUtils.getEncryptedFileType(dataSet.get(position).getFilePath())
-                ))
-                .crossFade()
-                .into(fileImage);*/
 
         // Use it for vector images
         fileImage.setImageDrawable(
@@ -97,14 +83,22 @@ public class FileAdapter extends RecyclerView.Adapter<FileAdapter.BaseViewHolder
             fileName.setText(fileModel.getFileName());
         }
 
-        rootView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (recyclerViewCallbacks != null) {
+        if (recyclerViewCallbacks != null) {
+            rootView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
                     recyclerViewCallbacks.itemClicked(holder.getAdapterPosition());
                 }
-            }
-        });
+            });
+
+            rootView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    recyclerViewCallbacks.onItemLongClick(fileModel);
+                    return true;
+                }
+            });
+        }
     }
 
     @Override
@@ -118,5 +112,7 @@ public class FileAdapter extends RecyclerView.Adapter<FileAdapter.BaseViewHolder
 
     public interface RecyclerViewCallbacks {
         void itemClicked(int position) throws IndexOutOfBoundsException;
+
+        void onItemLongClick(FileModel fileModel);
     }
 }

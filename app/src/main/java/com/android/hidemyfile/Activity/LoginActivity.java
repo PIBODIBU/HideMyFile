@@ -24,6 +24,7 @@ import com.android.hidemyfile.Support.SharedPreferencesUtils.SharedPreferencesUt
 import com.android.hidemyfile.Support.View.Utils;
 
 import java.util.HashMap;
+import java.util.Objects;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -76,7 +77,7 @@ public class LoginActivity extends AppCompatActivity {
                 }
 
                 // Comparing hashes
-                if (userKey.equals(sharedPrefUtils.getKey4Password())) {
+                if (Objects.equals(userKey.trim(), sharedPrefUtils.getKey4Password().trim())) {
                     startActivity(new Intent(this, MainActivity.class)
                             .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
                     finish();
@@ -171,11 +172,7 @@ public class LoginActivity extends AppCompatActivity {
         );
         indicator.setLayoutParams(layoutParams);
 
-        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.ICE_CREAM_SANDWICH_MR1) {
-            indicator.setBackground(ContextCompat.getDrawable(this, R.drawable.circle_accent));
-        } else {
-            indicator.setBackgroundDrawable(DrawableCompat.wrap(ContextCompat.getDrawable(this, R.drawable.circle_accent)));
-        }
+        indicator.setBackground(ContextCompat.getDrawable(this, R.drawable.circle_accent));
     }
 
     private void setIndicatorInactive(View indicator) {
@@ -188,11 +185,7 @@ public class LoginActivity extends AppCompatActivity {
         );
         indicator.setLayoutParams(layoutParams);
 
-        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.ICE_CREAM_SANDWICH_MR1) {
-            indicator.setBackground(ContextCompat.getDrawable(this, R.drawable.circle_grey));
-        } else {
-            indicator.setBackgroundDrawable(ContextCompat.getDrawable(this, R.drawable.circle_grey));
-        }
+        indicator.setBackground(ContextCompat.getDrawable(this, R.drawable.circle_grey));
     }
 
     private String getUserInput() {

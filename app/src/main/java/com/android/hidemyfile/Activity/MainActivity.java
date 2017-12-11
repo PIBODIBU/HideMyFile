@@ -5,12 +5,12 @@ import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
@@ -116,8 +116,18 @@ public class MainActivity extends AppCompatActivity {
         fileAdapter.setRecyclerViewCallbacks(new FileAdapter.RecyclerViewCallbacks() {
             @Override
             public void itemClicked(final int position) throws IndexOutOfBoundsException {
-                Log.d(TAG, "itemClicked() -> Position: " + position);
                 showDialogFileChooseAction(position);
+            }
+
+            @Override
+            public void onItemLongClick(FileModel fileModel) {
+                Uri uri = Uri.fromFile(new File(fileModel.getFilePath()));
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+
+                intent.setDataAndType(uri, "text/plain");
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+                startActivity(intent);
             }
         });
 
